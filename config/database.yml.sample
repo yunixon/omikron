@@ -6,12 +6,12 @@ local: &local
 
 development:
   <<: *local
-  database: pm_dev
+  database: omikron_dev
 
 test:
   <<: *local
-  database: pm_test
+  database: omikron_test
 
 production:
   <<: *local
-  database: pm_production
+  database: omikron_production
