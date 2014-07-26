@@ -5,9 +5,13 @@ env:
 - DB=postgresql
 script:
 - bundle exec rake db:migrate --trace RAILS_ENV=test
+- bundle exec rake db:test:prepare
+- bundle exec rake
 before_script:
 - cp config/database.yml.sample config/database.yml
 - psql -c 'create database omikron_test' -U postgres
+- bundle exec rake db:migrate RAILS_ENV=test
+- bundle exec rspec spec
 deploy:
   provider: heroku
   api_key:
