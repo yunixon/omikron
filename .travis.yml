@@ -4,17 +4,14 @@ rvm:
 env:
 - DB=postgresql
 script:
-- bundle exec rake db:migrate --trace RAILS_ENV=test
+- RAILS_ENV=test bundle exec rake db:migrate --trace
 - bundle exec rake db:test:prepare
 - bundle exec rake
 before_script:
 - cp config/database.yml.sample config/database.yml
 - psql -c 'create database omikron_test' -U postgres
-- bundle exec rake db:migrate RAILS_ENV=test
-- bundle exec rspec spec
 deploy:
   provider: heroku
   api_key:
     secure: lp9TSS8Ne9A6NwLM9vOSOkZ0muw5MksYv4UoGy1Y1xM7HBjN5dVKOfaruGSnjR3e11QSqOEsgfrjI8jxuK5AwfqYJs9KAxMxnfg8IXQrlO4WpvWGfm3i87DHXpsMqtIsxyl5IROsH0XOUXEBZF7n1Tm7zGoqAjPvQ0mF0SmtTJg=
   app: omikron
-  run "rake db:migrate"
