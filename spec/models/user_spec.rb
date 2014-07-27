@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+  
+  it { expect have_many :bets }
 
   before :all do
     @first_user = FactoryGirl.create :first_user
