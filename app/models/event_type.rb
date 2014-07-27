@@ -1,3 +1,3 @@
 class EventType < ActiveRecord::Base
-	has_many :Events
+	has_many :events
 end

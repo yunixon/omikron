@@ -1,3 +1,3 @@
 class CompleteType < ActiveRecord::Base
-	has_many :Events
+	has_many :events
 end
