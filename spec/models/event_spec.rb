@@ -7,7 +7,7 @@ RSpec.describe Event, :type => :model do
   
   it { expect have_many :bets }
   
-  it { is_expected.to belong_to(:event_type).class_name('EventType') }
-  it { is_expected.to belong_to(:complete_type).class_name('CompleteType') }
+  it { is_expected.to belong_to(:event_type).class_name('EventTypes') }
+  it { is_expected.to belong_to(:complete_type).class_name('CompleteTypes') }
 
 end
