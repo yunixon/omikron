@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :event_type do
-    name "MyString"
-    descrition "MyText"
+    name { Faker::Lorem.word }
+    descrition { Faker::Lorem.sentence }
   end
 end

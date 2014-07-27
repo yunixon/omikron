@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :complete_type do
-    result "MyString"
-    description "MyText"
+    result { Faker::Lorem.word }
+    description { Faker::Lorem.sentence }
   end
 end

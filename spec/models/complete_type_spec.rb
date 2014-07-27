@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CompleteType, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+   it "has a valid factory" do
+  	expect(FactoryGirl.build(:complete_type)).to be_valid
+  end
+
+  it { expect have_many :events}
 end
