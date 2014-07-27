@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :bet do
-    association :user
-    association :event
+    association :user, factory: :user
+    association :event, factory: :event
     sum { Faker::Number.decimal(3, 2) }
     side_bet { Faker::Number.between(0, 1) }
     complete false
