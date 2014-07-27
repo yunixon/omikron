@@ -4,6 +4,5 @@ FactoryGirl.define do
   factory :complete_type do
     result { Faker::Lorem.word }
     description { Faker::Lorem.sentence }
-    association :event
   end
 end
