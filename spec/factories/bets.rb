@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :bet do
-    user_id 1
-    event_id 1
-    sum "9.99"
-    side_bet 1
+    association :user, factory: :user
+    association :event, factory: :event
+    sum { Faker::Number.decimal(3, 2) }
+    side_bet { Faker::Number.between(0, 1) }
     complete false
-    complete_type 1
+    complete_type { Faker::Number.between(0, 3) }
   end
 end
