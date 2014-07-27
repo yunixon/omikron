@@ -7,6 +7,6 @@ FactoryGirl.define do
     sum { Faker::Number.decimal(3, 2) }
     side_bet { Faker::Number.between(0, 1) }
     complete false
-    association :complete_type
+    complete_type { Faker::Number.between(0, 3) }
   end
 end
