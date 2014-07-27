@@ -5,5 +5,5 @@ RSpec.describe CompleteType, :type => :model do
   	expect(FactoryGirl.build(:complete_type)).to be_valid
   end
 
-  it { expect.to have_many(:events) }
+  it { expect have_many :events }
 end
