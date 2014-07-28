@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :event_type do
     name { Faker::Lorem.word }
-    descrition { Faker::Lorem.sentence }
+    description { Faker::Lorem.sentence }
   end
 end
