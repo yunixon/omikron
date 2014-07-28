@@ -5,5 +5,5 @@ RSpec.describe EventType, :type => :model do
   	expect(FactoryGirl.build(:event_type)).to be_valid
   end
 
-  it { expect have_many :events }
+  #it { expect have_many :events }
 end
