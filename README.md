@@ -1,7 +1,7 @@
-### Status
 [![Build Status](https://api.travis-ci.org/yunixon/omikron.png)](https://api.travis-ci.org/yunixon/omikron)
  
-**Heroku:** http://omikron.herokuapp.com
+**Heroku master:** http://omikron.herokuapp.com
+**Heroku dev:** http://omikron-dev.herokuapp.com
  
 ##Проект Omikron - система ставок на события.
 
