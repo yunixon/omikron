@@ -50,6 +50,11 @@ gem "therubyracer"
 gem 'twitter-bootstrap-rails'
 gem 'haml'
 
+group :prodaction do
+  gem 'thin'
+  gem 'rails_12factor'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
