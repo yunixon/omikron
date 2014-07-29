@@ -41,6 +41,8 @@
         / /span
         .span9
           = bootstrap_flash
+          = render 'layouts/messages'
+          = devise_error_messages!
           = yield
       / /row
       = render 'layouts/footer'
