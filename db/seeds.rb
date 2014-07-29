@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 unless User.any?
-  User.create(email: "admin@omikron.com", password: "omikron", role: "admin") 
-  User.create(email: "user@omikron.com", password: "omikron", role: "user")
+  User.create(email: "admin@omikron.com", password: "omikroner", role: "admin") 
+  User.create(email: "user@omikron.com", password: "omikroner", role: "user")
 end
 
 unless EventType.any?
