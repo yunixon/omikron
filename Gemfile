@@ -46,7 +46,8 @@ end
 gem 'devise'
 gem 'enumerize'
 gem 'simple_form'
-gem 'bootstrap-sass'
+gem "therubyracer"
+gem 'twitter-bootstrap-rails'
 gem 'haml'
 
 # Use ActiveModel has_secure_password
