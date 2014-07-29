@@ -6,4 +6,9 @@ FactoryGirl.define do
     password { Faker::Internet.password(min_length = 8) }
     role { :user }
   end
+  factory :admin do
+    email { Faker::Internet.email }
+    password { Faker::Internet.password(min_length = 8) }
+    role { :admin }
+  end
 end
