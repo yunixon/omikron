@@ -51,7 +51,6 @@ gem 'twitter-bootstrap-rails'
 gem 'haml'
 
 group :prodaction do
-  
   gem 'rails_12factor'
 end
 
