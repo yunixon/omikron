@@ -34,4 +34,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  # Disable Rails's static asset server (Apache or nginx will already do this).
+  config.serve_static_assets = true
 end
