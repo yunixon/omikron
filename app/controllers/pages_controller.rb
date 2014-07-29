@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  
   def home
     @events = Event.where(complete: false)
   end
