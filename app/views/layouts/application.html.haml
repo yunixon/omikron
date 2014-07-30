@@ -32,16 +32,11 @@
     .container-fluid
       .row-fluid
         .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Upcoming", "/"
-              %li= link_to "Recent events", "/"
-              %li= link_to "Something else", "/"
-          / /.well
-        / /span
-        .span9
+          = render 'layouts/leftsidebar'
+        .span6
           = render 'layouts/messages'
           = yield
+        .span3
+          = render 'layouts/rightsidebar'
       / /row
       = render 'layouts/footer'
