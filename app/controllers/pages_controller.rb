@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     @events = Event.where(complete: false)
   end
   
-  def history
+  def archive
     @events = Event.where(complete: true)
   end
 
@@ -12,9 +12,6 @@ class PagesController < ApplicationController
   end
 
   def about
-  end
-
-  def faq
   end
   
 end
