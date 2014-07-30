@@ -1,4 +1,4 @@
-.navbar.navbar-fluid-top
+.navbar.navbar-inverse.navbar-fluid-top
   .navbar-inner
     .container-fluid
       %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
@@ -13,3 +13,23 @@
           %li= link_to "Archive", "/archive"
           %li= link_to "Help", "/help"
           %li= link_to "About", "/about"
+          
+        %ul.nav.pull-right
+          - if user_signed_in?
+            %li.navbar-text #{current_user.email.to_s}
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Account
+                %strong.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to "My Account", "#"
+                %li
+                  = link_to "Edit Profile", edit_user_registration_path
+                %li
+                  = link_to "Transactions", "#"
+                %li
+                  = link_to "Logout", destroy_user_session_path, method: :delete, class: 'dialog'
+          - else
+            %li= link_to "Login", new_user_session_path
+            %li= link_to "Sign up", new_user_registration_path
