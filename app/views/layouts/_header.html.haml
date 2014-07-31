@@ -8,11 +8,11 @@
       %a.brand{href: "#"} Omikron
       .container-fluid.nav-collapse
         %ul.nav
-          %li= link_to "Home", "/"
-          %li= link_to "Events", "/events"
-          %li= link_to "Archive", "/archive"
-          %li= link_to "Help", "/help"
-          %li= link_to "About", "/about"
+          %li= link_to "Home", root_path
+          %li= link_to "Events", "#"
+          %li= link_to "Archive", "#"
+          %li= link_to "Help", help_path
+          %li= link_to "About", about_path
           
         %ul.nav.pull-right
           - if user_signed_in?
