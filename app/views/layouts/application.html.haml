@@ -32,11 +32,32 @@
     .container-fluid
       .row-fluid
         .span3
+<<<<<<< HEAD
           = render 'layouts/leftsidebar'
         .span6
+=======
+          .well.sidebar-nav
+            %ul.nav.nav-list
+              %li.nav-header Categories
+              %li= link_to "Bundesliga", "/"
+              %li= link_to "MLS", "/"
+              %li= link_to "La Liga", "/"
+              %li= link_to "International", "/"
+              %li= link_to "Portuguese Liga", "/"
+              %li= link_to "Primera Division Argentina", "/"
+              %li= link_to "Russian Premier League", "/"
+              %li= link_to "Scottish Premiership", "/"
+              %li= link_to "Serie A", "/"
+              %li= link_to "UEFA Champions League", "/"
+              %li= link_to "UEFA Europa League", "/"
+          / /.well
+        / /span
+        .span9
+>>>>>>> homepage
           = render 'layouts/messages'
           = yield
         .span3
           = render 'layouts/rightsidebar'
       / /row
       = render 'layouts/footer'
+      
