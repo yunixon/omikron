@@ -18,9 +18,7 @@
           - if user_signed_in?
             %li.navbar-text #{current_user.email.to_s}
             %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-                Account
-                %strong.caret
+              = link_to "Account", "#", :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}
               %ul.dropdown-menu
                 %li
                   = link_to "My Account", "#"

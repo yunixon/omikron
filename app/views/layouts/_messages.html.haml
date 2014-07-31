@@ -1,4 +1,4 @@
 - flash.each do |key, value|
   %div{class: "alert alert-#{key}"}
-    %a.close{"data-dismiss" => "alert", href: "#"} ×
+    = link_to "×", "#", :class => "close", :data => { :dissmis => 'alert' }
     = value
