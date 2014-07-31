@@ -1,4 +1,78 @@
 = provide(:title, 'Home')
-%h1 Pages#home
+// Temporary thrash data 
+%h1 Welcome
+%p
+%h2 Upcoming events:
+%table.table.table-hover
+  %thead
+    %tr
+      %th{width: "20%"} Time
+      %th{width: "35%"} Match
+      %th{width: "25%"} Event
+      %th Available
+  %tbody
+    %tr
+      %td Today, 15-30 GMT+4
+      %td Real Madrid - Bayern Munich
+      %td Champions League
+      %td
+        %a{href: "/"} Make Bet!
+    %tr
+      %td Today, 17-00 GMT+4
+      %td Spartak Moscow - CSKA Moscow
+      %td Russian Premier League
+      %td
+        %a{href: "/"} Make Bet!
+    %tr
+      %td Today, 20-40 GMT+4
+      %td Inter Milan - Lazio
+      %td Serie A
+      %td
+        %a{href: "/"} Make Bet!
+    %tr
+      %td
+        %a{href: "/events"} Show all upcoming events
+      %td
+      %td
+      %td
+%h2 Recent events:
+%table.table.table-hover
+  %thead
+    %tr
+      %th{width: "20%"} Time
+      %th{width: "35%"} Match
+      %th{width: "25%"} Event
+      %th Result
+  %tbody
+    %tr
+      %td Yesterday, 16-15 GMT+4
+      %td 
+        %b>Brazil 
+        \ - Argentina
+      %td Friendly
+      %td
+        %b> 1
+        \-0
+    %tr
+      %td Yesterday, 20-15 GMT+4
+      %td Barcelona - Real Sociedad
+      %td Spanish Primera
+      %td 0-0
+    %tr
+      %td Yesterday, 22-35 GMT+4
+      %td 
+        %b>Borussia D 
+        \ - Wolfsburg
+      %td Bundesliga
+      %td
+        %b> 3
+        \-2
+    %tr
+      %td
+        %a{href: "/archive"} Show all recent events
+      %td
+      %td
+      %td
 
-= link_to "Log out", destroy_user_session_path, method: :delete, class: 'dialog'
+
+= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-primary'
