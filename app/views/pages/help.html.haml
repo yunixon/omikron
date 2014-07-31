@@ -4,12 +4,15 @@
   %b How to envolve?
 %ol
   %li
-    %a{href: new_user_registration_path} Register an account.
+    = link_to "Register", new_user_registration_path 
+    an account.
   %li Add funds to your balance.
   %li
     Choose an event from 
-    %a{href: "#"} "Upcoming Events" list on the main page 
+    = link_to "Upcoming Events", root_path
+    list on the main page 
     or see the full list on
-    %a{href: "#"} "Events" page.
+    = link_to "Events", "#" 
+    page.
   %li Select side and/or result.
   %li Finish your bet.

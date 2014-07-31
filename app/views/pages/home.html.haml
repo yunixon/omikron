@@ -1,4 +1,4 @@
-= provide(:title, 'Home')
+= provide(:title, "Home")
 // Temporary thrash data 
 %h1 Welcome
 %p
@@ -16,22 +16,22 @@
       %td Real Madrid - Bayern Munich
       %td Champions League
       %td
-        %a{href: root_path} Make Bet!
+        = link_to "Make Bet!", root_path
     %tr
       %td Today, 17-00 GMT+4
       %td Spartak Moscow - CSKA Moscow
       %td Russian Premier League
       %td
-        %a{href: root_path} Make Bet!
+        = link_to "Make Bet!", root_path
     %tr
       %td Today, 20-40 GMT+4
       %td Inter Milan - Lazio
       %td Serie A
       %td
-        %a{href: root_path} Make Bet!
+        = link_to "Make Bet!", root_path
     %tr
       %td
-        %a{href: "#"} Show all upcoming events
+        = link_to "Show all upcoming events", "#"
       %td
       %td
       %td
@@ -69,10 +69,10 @@
         \-2
     %tr
       %td
-        %a{href: "#"} Show all recent events
+        = link_to "Show all upcoming events", "#"
       %td
       %td
       %td
 
 
-= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-primary'
+= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary"
