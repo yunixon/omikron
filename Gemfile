@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -45,6 +45,16 @@ end
 
 gem 'devise'
 gem 'enumerize'
+gem 'simple_form'
+gem "therubyracer"
+gem 'twitter-bootstrap-rails'
+gem 'haml'
+
+group :prodaction do
+  gem 'rails_12factor'
+end
+
+gem 'thin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
