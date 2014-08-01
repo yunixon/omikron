@@ -50,6 +50,7 @@ gem "therubyracer"
 gem 'twitter-bootstrap-rails'
 gem 'haml'
 gem 'cancancan'
+gem 'kaminari'
 
 group :prodaction do
   gem 'rails_12factor'
