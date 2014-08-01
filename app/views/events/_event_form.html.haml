@@ -1,0 +1,8 @@
+= render 'shared/error_messages', object: f.object
+= f.association :event_type
+= f.input :name
+= f.input :first_side
+= f.input :second_side
+= f.input :datetime_start, :default => Time.now
+= f.input :complete, label: false, inline_label: 'Completed?'
+= f.association :complete_type

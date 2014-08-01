@@ -1,0 +1,10 @@
+- provide(:title, "Event | #{@event.name}")
+%h4
+  #{@event.name}
+%p
+  = link_to "Edit event", edit_event_path
+%p
+  #{@event.datetime_start.to_s}
+  #{@event.first_side} - #{@event.second_side}
+%p
+  = link_to "Make Bet!", "#"
