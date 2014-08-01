@@ -1,0 +1,10 @@
+- provide(:title, "#{@user.email}")
+%h2
+  User: #{@user.email}
+%h2 Balance: #{'%.3f' % @user.balance}
+%p 
+- if @user.bets.any?
+  -#
+    Тут выбор даты/календарь/пагинация
+    %h4 Bets:
+      = render @user.bets

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "sign_in", to: "devise/sessions#new"
   end
   
+  resources :users
   resources :complete_types
   resources :event_types
   resources :events
