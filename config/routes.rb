@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
   end
+  
+  resources :complete_types
+  resources :event_types
+  resources :events
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
