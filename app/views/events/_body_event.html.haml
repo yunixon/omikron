@@ -9,10 +9,10 @@
     - @events.each do |event|
       %tr
         %td
-          #{event.datetime_start.to_s}
+          = link_to event.datetime_start.to_s, edit_event_path(event)
         %td
-          #{event.first_side} - #{event.second_side}
+          = link_to event.first_side + " - " + event.second_side, edit_event_path(event)
         %td
-          #{event.name}
+          = link_to event.name, edit_event_path(event)
         %td
           = link_to "Make Bet!", "#"
