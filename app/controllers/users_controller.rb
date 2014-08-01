@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:show, :edit, :update]
     
   def index
-    @users = User.all
+    @users = User.order(:email).page params[:page]
   end
   
   def new

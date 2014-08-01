@@ -1,3 +1,4 @@
+= paginate @users
 %table.table.table-hover
   %thead
     %tr
@@ -6,7 +7,7 @@
       %th.column-20 Balance
       %th.column-20 Edit
       %th.column-25 Delete
-  %tbody  
+  %tbody
     - @users.each do |user|
       %tr
         %td
@@ -19,3 +20,4 @@
           = link_to "Edit", edit_user_path(user)
         %td
           = link_to "Delete", "#"
+= paginate @users
