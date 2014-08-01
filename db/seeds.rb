@@ -5,6 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'factory_girl_rails'
+
+10.times do
+  FactoryGirl.create :user
+end
+
 unless User.any?
   User.create(email: "admin@omikron.com", password: "omikroner", role: 1, balance: 50) 
   User.create(email: "user@omikron.com", password: "omikroner", role: 0, balance: 0)
