@@ -3,38 +3,7 @@
 %h1 Welcome
 %p
 %h2 Upcoming events:
-%table.table.table-hover
-  %thead
-    %tr
-      %th.column-20 Time
-      %th.column-35 Match
-      %th.column-25 Event
-      %th Available
-  %tbody
-    %tr
-      %td Today, 15-30 GMT+4
-      %td Real Madrid - Bayern Munich
-      %td Champions League
-      %td
-        = link_to "Make Bet!", root_path
-    %tr
-      %td Today, 17-00 GMT+4
-      %td Spartak Moscow - CSKA Moscow
-      %td Russian Premier League
-      %td
-        = link_to "Make Bet!", root_path
-    %tr
-      %td Today, 20-40 GMT+4
-      %td Inter Milan - Lazio
-      %td Serie A
-      %td
-        = link_to "Make Bet!", root_path
-    %tr
-      %td
-        = link_to "Show all upcoming events", "#"
-      %td
-      %td
-      %td
+= render "events/body_event"
 %h2 Recent events:
 %table.table.table-hover
   %thead
