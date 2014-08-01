@@ -1,0 +1,21 @@
+- provide(:title, 'All events')
+%h2
+  All events:
+  = link_to "Add event", new_event_path
+%table.table.table-hover
+  %thead
+    %tr
+      %th.column-20 Time
+      %th.column-35 Match
+      %th.column-25 Event
+      %th Available
+  %tbody  
+    - @events.each do |event|
+      %td
+        #{event.datetime_start.to_s}
+      %td
+        #{event.first_side} - #{event.second_side}
+      %td
+        #{event.name}
+      %td
+        = link_to "Make Bet!", "#"
