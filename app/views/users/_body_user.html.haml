@@ -2,6 +2,8 @@
   %thead
     %tr
       %th.column-20 email
+      %th.column-20 Role
+      %th.column-20 Balance
       %th.column-20 Edit
       %th.column-25 Delete
   %tbody  
@@ -9,6 +11,10 @@
       %tr
         %td
           = link_to user.email, user_path(user)
+        %td
+          #{user.role}
+        %td
+          #{'%.2f' % user.balance}
         %td
           = link_to "Edit", edit_user_path(user)
         %td

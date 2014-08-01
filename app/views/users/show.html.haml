@@ -1,7 +1,7 @@
 - provide(:title, "#{@user.email}")
 %h2
   User: #{@user.email}
-%h2 Balance: #{'%.3f' % @user.balance}
+%h2 Balance: #{'%.2f' % @user.balance}
 %p 
 - if @user.bets.any?
   -#
