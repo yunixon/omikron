@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.save
       flash[:success] = "Event added!"
-      redirect_to @event
+      redirect_to events_path
     else
       render 'new'
     end
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   def destroy
     Event.find(params[:id]).destroy
     flash[:success] = "Event destroyed."
-    redirect_to events_url
+    redirect_to events_path
   end
   
   private

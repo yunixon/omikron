@@ -5,5 +5,6 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Internet.password(min_length = 8) }
     role { :user }
+    balance 0
   end
 end
