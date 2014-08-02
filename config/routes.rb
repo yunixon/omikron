@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/help',    to: 'pages#help'
   get '/about',   to: 'pages#about'
-  get '/archive', to: 'pages#archive'
+  get '/archive', to: 'pages#archive' 
 
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"

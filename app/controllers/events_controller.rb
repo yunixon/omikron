@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update]
   
   def index
-    @events = Event.all
+    @search = Event.search(params[:q])
+    @events = @search.result(distinct: true)
   end
 
   def show
@@ -40,6 +41,10 @@ class EventsController < ApplicationController
     Event.find(params[:id]).destroy
     flash[:success] = "Event destroyed."
     redirect_to events_path
+  end
+  
+  def search
+   @search = params[:search][:q]
   end
   
   private

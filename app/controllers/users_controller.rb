@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:show, :edit, :update]
     
   def index
-    @users = User.order(:email).page params[:page]
+    @search = User.search(params[:q])
+    @users = @search.result.order(:email).page(params[:page])
+    
+    #@users = User.order(:email).page params[:page]
   end
   
   def new
