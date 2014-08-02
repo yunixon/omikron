@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource param_method: :event_params
   before_action :find_event, only: [:show, :edit, :update]
   
   def index

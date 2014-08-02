@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
-  before_action :correct_user,   only: [:show, :edit, :update]
+  load_and_authorize_resource  param_method: :user_params
+  before_action :correct_user, only: [:show, :edit, :update]
+  #before_action :admin_user,   only: [:index, :destroy]
     
   def index
     @search = User.search(params[:q])
     @users = @search.result.order(:email).page(params[:page])
-    
-    #@users = User.order(:email).page params[:page]
   end
   
   def new
@@ -59,5 +58,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user == @user || current_user.role.admin?
   end
+  
+  #def admin_user
+  #  redirect_to(root_url) unless current_user.role.admin?
+  #end
   
 end
