@@ -3,7 +3,7 @@ class EventTypesController < ApplicationController
   before_action :find_event_type, only: [:show, :edit, :update]
   
   def index
-    @event_types = EventType.all
+    @event_types = EventType.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
