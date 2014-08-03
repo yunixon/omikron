@@ -1,4 +1,5 @@
 - provide(:title, 'All categories')
+= paginate @event_types
 %h2
   All categories:
   - if can? :create, @event_type
