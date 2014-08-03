@@ -3,11 +3,13 @@ class EventTypesController < ApplicationController
   before_action :find_event_type, only: [:show, :edit, :update]
   
   def index
-    @event_types = EventType.all
   end
 
   def new
     @event_type = EventType.new
+  end
+
+  def show
   end
 
   def create
