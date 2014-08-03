@@ -1,0 +1,25 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th.column-20 Time
+      %th.column-35 Match
+      %th.column-20 Event
+      %th.column-20 Available
+      - if can? :update, Event
+        %th.column-20 Edit
+  %tbody  
+    - @events.each do |event|
+      %tr
+        %td
+          = link_to event.datetime_start.to_s, event_path(event)
+        %td
+          = link_to event.first_side + " - " + event.second_side, event_path(event)
+        %td
+          = link_to event.name, event_path(event)
+        %td
+          = link_to "Bet!", "#"
+        %td
+          - if can? :update, event
+            = link_to "Edit", edit_event_path(event)
+          - if can? :destroy, event
+            = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'}

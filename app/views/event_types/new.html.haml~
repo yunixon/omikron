@@ -1,0 +1,8 @@
+- provide(:title, 'Add category')
+%h2 Add event_type_type
+= simple_form_for(@event_type) do |f|
+  = render 'event_type_form', f: f
+  = f.submit "Add", class: "btn btn-primary"
+
+%p
+  = link_to '< back', :back, class: 'btn btn-primary'

@@ -1,0 +1,19 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th.column-20 Name
+      %th.column-35 Description
+      - if can? :update, @event_type
+        %th.column-20 Edit
+  %tbody  
+    - @event_types.each do |event_type|
+      %tr
+        %td
+          = event_type.name
+        %td
+          = event_type.description
+        %td
+          - if can? :update, event_type
+            = link_to "Edit", edit_event_type_path(event_type)
+          - if can? :destroy, event_type
+            = link_to "Delete", event_type_path(event_type), method: :delete, data: {confirm: 'sure?'}

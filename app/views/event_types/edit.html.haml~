@@ -1,0 +1,8 @@
+- provide(:title, 'Edit category')
+%h2 Edit event_type
+= simple_form_for(@event_type) do |f|
+  = render 'event_type_form', f: f
+  = f.submit "Save", class: "btn btn-primary"
+
+%p
+  = link_to '< back', :back, class: 'btn btn-primary'
