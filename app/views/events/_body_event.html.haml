@@ -1,3 +1,4 @@
+= paginate @events
 %table.table.table-hover
   %thead
     %tr
@@ -23,3 +24,4 @@
             = link_to "Edit", edit_event_path(event)
           - if can? :destroy, event
             = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'}
+= paginate @events
