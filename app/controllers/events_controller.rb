@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   
   def index
     @search = Event.search(params[:q])
-    @events = @search.result(distinct: true)
+    @events = @search.result(distinct: true).order(:datetime_start).page(params[:page]).per(12)
   end
 
   def show
