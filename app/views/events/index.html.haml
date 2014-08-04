@@ -1,6 +1,5 @@
 - provide(:title, 'All events')
 = render "search"
-= paginate @events
 %h2
   All events:
   - if can? :create, @event
