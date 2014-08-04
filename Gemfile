@@ -52,7 +52,6 @@ gem 'haml'
 gem 'cancancan'
 gem 'kaminari'
 gem 'ransack'
-gem 'will_paginate'
 
 group :prodaction do
   gem 'rails_12factor'
