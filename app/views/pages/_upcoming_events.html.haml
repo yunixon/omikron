@@ -2,6 +2,7 @@
   %thead
     %tr
       %th.column-20 Time
+      %th.column-20 Category
       %th.column-35 Match
       %th.column-20 Event
       %th.column-20 Available
@@ -9,7 +10,9 @@
     - @upcoming_events.each do |event|
       %tr
         %td
-          = link_to event.datetime_start.to_s, event_path(event)
+          = event.datetime_start.to_s
+        %td
+          = event.event_type.name
         %td
           = link_to event.first_side + " - " + event.second_side, event_path(event)
         %td
