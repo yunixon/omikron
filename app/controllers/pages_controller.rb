@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   
   def archive
     @search = Event.where(complete: true).search(params[:q])
-    @events = @search.result(distinct: true)
+    @events = @search.result(distinct: true).order(:datetime_start).page(params[:page]).per(10)
   end
 
   def help
