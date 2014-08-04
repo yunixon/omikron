@@ -1,9 +1,9 @@
 - provide(:title, 'All events')
 = render "search"
-= paginate @events
 %h2
   All events:
   - if can? :create, @event
     = link_to "Add event", new_event_path
+= paginate @events
 = render "body_event"
 = paginate @events
