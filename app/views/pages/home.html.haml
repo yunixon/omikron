@@ -1,47 +1,7 @@
 = provide(:title, "Home")
-// Temporary thrash data 
-%h1 Welcome
-%p
 %h2 Upcoming events:
-= render "events/body_event"
+= render "upcoming_events"
 %h2 Recent events:
-%table.table.table-hover
-  %thead
-    %tr
-      %th.column-20 Time
-      %th.column-35 Match
-      %th.column-25 Event
-      %th Result
-  %tbody
-    %tr
-      %td Yesterday, 16-15 GMT+4
-      %td 
-        %b>Brazil 
-        \ - Argentina
-      %td Friendly
-      %td
-        %b> 1
-        \-0
-    %tr
-      %td Yesterday, 20-15 GMT+4
-      %td Barcelona - Real Sociedad
-      %td Spanish Primera
-      %td 0-0
-    %tr
-      %td Yesterday, 22-35 GMT+4
-      %td 
-        %b>Borussia D 
-        \ - Wolfsburg
-      %td Bundesliga
-      %td
-        %b> 3
-        \-2
-    %tr
-      %td
-        = link_to "Show all upcoming events", "#"
-      %td
-      %td
-      %td
-
+= render "recent_events"
 
 = link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary"

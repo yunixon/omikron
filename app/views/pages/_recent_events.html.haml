@@ -1,0 +1,15 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th.column-20 Time
+      %th.column-35 Match
+      %th.column-20 Event
+  %tbody  
+    - @recent_events.each do |event|
+      %tr
+        %td
+          = link_to event.datetime_start.to_s, event_path(event)
+        %td
+          = link_to event.first_side + " - " + event.second_side, event_path(event)
+        %td
+          = link_to event.name, event_path(event)

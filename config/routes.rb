@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   
   resources :complete_types
   resources :event_types
-  resources :events
+  resources :events do
+    get 'upcoming_events', to: 'events#upcoming'
+    get 'recent_events',   to: 'events#recent'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,5 +1,5 @@
 = search_form_for @search, class: 'form-inline' do |f|
   .field
-    = f.label :name_cont, "Name contains: "
-    = f.text_field :name_cont
-  .actions= f.submit "Search"
+    = f.text_field :name_cont, placeholder: "Search by name"
+    %button.add-on{type: "submit"}
+      %i.icon-search

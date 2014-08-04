@@ -60,7 +60,6 @@ class UsersController < ApplicationController
   end
   
   def admin_user
-    flash[:error] = "Access denied."
     redirect_to(root_url) unless current_user.role.admin?
   end
   
