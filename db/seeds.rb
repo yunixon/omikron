@@ -5,8 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(email: "admin@omikron.com", password: "omikroner", role: 1, balance: 50) 
-User.create(email: "user@omikron.com", password: "omikroner", role: 0, balance: 0)
+unless User.any?
+  User.create(email: "admin@omikron.com", password: "omikroner", role: 1, balance: 50) 
+  User.create(email: "user@omikron.com", password: "omikroner", role: 0, balance: 0)
+end
 
 unless EventType.any?
   @et1 = EventType.create(name: "Football", description: "Football events")

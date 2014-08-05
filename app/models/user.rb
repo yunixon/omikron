@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :bets
   
+  validates :balance, numericality: { greater_than_or_equal_to: 0.0 }
+  
 end
