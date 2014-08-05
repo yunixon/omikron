@@ -5,16 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-require 'factory_girl_rails'
-
-10.times do
-  FactoryGirl.create :user
-end
-
-unless User.any?
-  User.create(email: "admin@omikron.com", password: "omikroner", role: 1, balance: 50) 
-  User.create(email: "user@omikron.com", password: "omikroner", role: 0, balance: 0)
-end
+User.create(email: "admin@omikron.com", password: "omikroner", role: 1, balance: 50) 
+User.create(email: "user@omikron.com", password: "omikroner", role: 0, balance: 0)
 
 unless EventType.any?
   @et1 = EventType.create(name: "Football", description: "Football events")
@@ -29,6 +21,13 @@ unless CompleteType.any?
 end
 
 unless Event.any?
+  Event.create(name: "Germany Bundesliga",
+    event_type: @et1, first_side: "FC Bayern München", second_side: "VfL Wolfsburg",
+    datetime_start: "2014-11-17 10:00:00 UTC", complete: false, count: "0:0",
+    complete_type: @ct1)
+end
+
+15.times do
   Event.create(name: "Germany Bundesliga",
     event_type: @et1, first_side: "FC Bayern München", second_side: "VfL Wolfsburg",
     datetime_start: "2014-11-17 10:00:00 UTC", complete: false, count: "0:0",
