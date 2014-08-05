@@ -11,4 +11,9 @@ class Event < ActiveRecord::Base
   validates :second_side,      presence: true, length: { in: 3..80 }
   validates :event_type_id,    presence: true
   validates :datetime_start,   presence: true
+  
+  scope :completed, -> (bool)  { where(complete: bool) }
+  scope :upcoming, -> (count) { where(complete: false).last(count) }
+  scope :recent, -> (count) { where(complete: true).last(count) }
+  scope :sort_by_dt, -> { order(:datetime_start }
 end
