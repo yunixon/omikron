@@ -6,14 +6,15 @@ class Event < ActiveRecord::Base
   
   accepts_nested_attributes_for :bets
   
-  validates :name,             presence: true, length: { in: 3..120 }
-  validates :first_side,       presence: true, length: { in: 3..80 }
-  validates :second_side,      presence: true, length: { in: 3..80 }
-  validates :event_type_id,    presence: true
+  validates :name,             presence: true
+  validates :first_side,       presence: true
+  validates :second_side,      presence: true
   validates :datetime_start,   presence: true
+  
+  validates_associated :event_type
   
   scope :completed, -> (bool)  { where(complete: bool) }
   scope :upcoming, -> (count) { where(complete: false).last(count) }
   scope :recent, -> (count) { where(complete: true).last(count) }
-  scope :sort_by_dt, -> { order(:datetime_start }
+  scope :sort_by_dt, -> { order(:datetime_start) }
 end
