@@ -7,8 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'factory_girl_rails'
 
-10.times do
+15.times do
   FactoryGirl.create :user
+end
+15.times do
+  FactoryGirl.create :event
 end
 
 unless User.any?
