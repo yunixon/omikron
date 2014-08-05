@@ -6,5 +6,11 @@ class Bet < ActiveRecord::Base
  
   belongs_to :user
   belongs_to :event
+  
+  validates :side_bet, presence: true
+  validates :sum,      presence: true, numericality: { greater_than: 0.0 }
+  
+  validates_associated :event
+  validates_associated :user
 
 end

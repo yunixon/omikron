@@ -52,6 +52,7 @@ gem 'haml'
 gem 'cancancan'
 gem 'kaminari'
 gem 'ransack'
+gem 'nested_form'
 
 group :prodaction do
   gem 'rails_12factor'

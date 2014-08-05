@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   scope "/admin" do
-    resources :users
+    resources :users do
+      resources :bets
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   resources :complete_types
   resources :event_types
   resources :events do
+    resources :bets
     get 'upcoming_events', to: 'events#upcoming'
     get 'recent_events',   to: 'events#recent'
   end

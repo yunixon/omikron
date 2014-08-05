@@ -6,10 +6,16 @@
     = link_to "Edit event", edit_event_path(@event), class: 'btn btn-primary'
 - if can? :destroy, @event
   %p
-    = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'},
+    = link_to "Delete", event_path(@event), method: :delete, data: {confirm: 'sure?'},
       class: 'btn btn-primary'
 %h4
   #{@event.datetime_start.to_s}
   #{@event.first_side} - #{@event.second_side}
 %p
-  = link_to "Make Bet!", "#"
+  = link_to "Make Bet!", new_event_bet_path(@event), class: 'btn btn-primary'
+  
+%p
+  - if @event.bets.any? and signed_in?
+    %h4
+      Bets:
+      = render @event.bets

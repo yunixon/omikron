@@ -21,7 +21,7 @@
         %td
           = link_to event.name, event_path(event)
         %td
-          = link_to "Bet!", "#"
+          = link_to "Bet!", new_event_bet_path(event)
         %td
           - if can? :update, event
             = link_to "Edit", edit_event_path(event)

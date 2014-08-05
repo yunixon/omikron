@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   
   def index
     @search = Event.search(params[:q])
-    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(10)
+    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
   end
 
   def show

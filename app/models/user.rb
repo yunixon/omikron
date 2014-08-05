@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   
   has_many :bets
   
-  accepts_nested_attributes_for :bets
+  accepts_nested_attributes_for :bets, allow_destroy: true
   
   validates :balance, numericality: { greater_than_or_equal_to: 0.0 }
   
