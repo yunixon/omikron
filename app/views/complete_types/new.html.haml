@@ -1,0 +1,8 @@
+- provide(:title, 'Add complete type')
+%h2 Add complete type
+= simple_form_for(@complete_type) do |f|
+  = render 'complete_type_form', f: f
+  = f.submit "Add", class: "btn btn-primary"
+
+%p
+  = link_to '< back', :back, class: 'btn btn-primary'

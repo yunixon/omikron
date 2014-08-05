@@ -1,0 +1,12 @@
+- provide(:title, "Complete type | #{@complete_type.result}")
+%h2
+  #{@complete_type.result}
+%p
+  #{@complete_type.description}
+- if can? :update, @complete_type
+  %p
+    = link_to "Edit", edit_complete_type_path(@complete_type), class: 'btn btn-primary'
+- if can? :destroy, @complete_type
+  %p
+    = link_to "Delete", complete_type_path(@complete_type), method: :delete, data: {confirm: 'sure?'},
+      class: 'btn btn-primary'

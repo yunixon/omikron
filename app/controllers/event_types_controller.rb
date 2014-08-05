@@ -20,8 +20,10 @@ class EventTypesController < ApplicationController
       redirect_to event_types_path
     else
       render 'new'
-    end
-    
+    end  
+  end
+  
+  def edit
   end
 
   def update
@@ -46,7 +48,7 @@ class EventTypesController < ApplicationController
   end
 
   def event_type_params
-    params.require(:event_type).permit(:name, :event_type_type_id, :description)
+    params.require(:event_type).permit(:name, :description)
   end
   
 end

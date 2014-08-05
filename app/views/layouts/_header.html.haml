@@ -18,6 +18,10 @@
           - if user_signed_in?
             - if current_user.role.admin?
               %li
+                = link_to "Types of results", complete_types_path
+              %li
+                = link_to "Categories", event_types_path
+              %li
                 = link_to "Users", users_path
             %li.navbar-text #{current_user.email.to_s}
             %li.dropdown
