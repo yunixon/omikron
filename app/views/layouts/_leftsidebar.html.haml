@@ -1,6 +1,7 @@
 .well.sidebar-nav
   %ul.nav.nav-list
-    %li.nav-header Events:
-    %li= link_to "Upcoming", root_path
-    %li= link_to "Recent events", root_path
-    %li= link_to "Something else", root_path
+    %li.nav-header Categories:
+    - EventType.last(10).each do |cat|
+      %li= cat.name
+      
+    = link_to "See all categories", event_types_path

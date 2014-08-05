@@ -1,0 +1,5 @@
+- provide(:title, 'Sign up')
+%h2 Registration
+= simple_form_for(@user, html: {class: 'form-vertical' }) do |f|
+  = render 'form', f: f
+  = f.submit 'Registration', class: "btn btn-default"

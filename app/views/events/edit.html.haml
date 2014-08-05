@@ -1,0 +1,8 @@
+- provide(:title, 'Edit event')
+%h2 Edit event
+= simple_form_for(@event) do |f|
+  = render 'event_form', f: f
+  = f.submit "Save", class: "btn btn-primary"
+
+%p
+  = link_to '< back', :back, class: 'btn btn-primary'

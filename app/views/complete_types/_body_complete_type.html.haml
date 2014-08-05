@@ -1,0 +1,21 @@
+= paginate @complete_types
+%table.table.table-hover
+  %thead
+    %tr
+      %th.column-20 Result
+      %th.column-35 Description
+      - if can? :update, @complete_type
+        %th.column-20 Edit
+  %tbody  
+    - @complete_types.each do |complete_type|
+      %tr
+        %td
+          = complete_type.result
+        %td
+          = complete_type.description
+        %td
+          - if can? :update, complete_type
+            = link_to "Edit", edit_complete_type_path(complete_type)
+          - if can? :destroy, complete_type
+            = link_to "Delete", complete_type_path(complete_type), method: :delete, data: {confirm: 'sure?'}
+= paginate @complete_types

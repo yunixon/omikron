@@ -1,0 +1,21 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th.column-20 Time
+      %th.column-20 Category
+      %th.column-35 Match
+      %th.column-20 Event
+      %th.column-20 Available
+  %tbody  
+    - @upcoming_events.each do |event|
+      %tr
+        %td
+          = event.datetime_start.to_s
+        %td
+          = event.event_type.name
+        %td
+          = link_to event.first_side + " - " + event.second_side, event_path(event)
+        %td
+          = link_to event.name, event_path(event)
+        %td
+          = link_to "Bet!", "#"

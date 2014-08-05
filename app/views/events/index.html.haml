@@ -1,0 +1,8 @@
+- provide(:title, 'All events')
+= render "search"
+
+%h2
+  All events:
+  - if can? :create, @event
+    = link_to "Add event", new_event_path
+= render "body_event"

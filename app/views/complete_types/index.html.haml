@@ -1,0 +1,6 @@
+- provide(:title, 'All complete types')
+%h2
+  All complete types:
+  - if can? :create, @complete_type
+    = link_to "Add complete type", new_complete_type_path
+= render "body_complete_type"

@@ -1,0 +1,15 @@
+- provide(:title, "Event | #{@event.name}")
+%h2
+  #{@event.name}
+- if can? :update, @event
+  %p
+    = link_to "Edit event", edit_event_path(@event), class: 'btn btn-primary'
+- if can? :destroy, @event
+  %p
+    = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'},
+      class: 'btn btn-primary'
+%h4
+  #{@event.datetime_start.to_s}
+  #{@event.first_side} - #{@event.second_side}
+%p
+  = link_to "Make Bet!", "#"

@@ -1,0 +1,5 @@
+= search_form_for @search, class: 'form-inline' do |f|
+  .field
+    = f.search_field :name_or_first_side_or_second_side_cont, placeholder: "Search"
+    %button.add-on{type: "submit"}
+      %i.icon-search

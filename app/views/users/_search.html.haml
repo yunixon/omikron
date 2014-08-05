@@ -1,0 +1,5 @@
+= search_form_for @search, class: 'form-inline' do |f|
+  .field
+    = f.text_field :email_cont, placeholder: "Search by email"
+    %button.add-on{type: "submit"}
+      %i.icon-search

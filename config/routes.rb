@@ -1,16 +1,27 @@
 Rails.application.routes.draw do
   devise_for :users
+  scope "/admin" do
+    resources :users
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
-  get '/help',  :to => 'pages#help'
-  get '/about', :to => 'pages#about'
+  get '/help',    to: 'pages#help'
+  get '/about',   to: 'pages#about'
+  get '/archive', to: 'pages#archive' 
 
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
+  end
+  
+  resources :complete_types
+  resources :event_types
+  resources :events do
+    get 'upcoming_events', to: 'events#upcoming'
+    get 'recent_events',   to: 'events#recent'
   end
 
   # Example of regular route:
