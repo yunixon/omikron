@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   load_and_authorize_resource param_method: :event_params
   before_action :find_event, only: [:show, :edit, :update]
+  after_action :play_bets, only: [:update]
   
   def index
     @search = Event.search(params[:q])
@@ -12,10 +13,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.complete_type = CompleteType.new
   end
 
   def create
     @event = Event.new(event_params)
+    @event.complete_type = CompleteType.new
     if @event.save
       flash[:success] = "Event added!"
       redirect_to events_path
@@ -55,7 +58,22 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :event_type_id, :first_side, :second_side,
-      :datetime_start, :count, :complete, :complete_type)
+      :datetime_start, :count, :complete, complete_type_attributes: complete_type_params)
+  end
+  
+  def complete_type_params
+    [:id, :result, :description, :event_id, :_destroy]
+  end
+  
+  # Правильно ли так?
+  def play_bets
+    #allsum = @event.bets.sum("sum")
+    #allsum -= allsum*0.03
+    #@event.bets.each do |bet|
+    #  case @event.complete_type.result
+    #  when: 0
+    #  bet.update(complete_type: :)
+    #end
   end
   
 end

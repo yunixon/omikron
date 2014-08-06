@@ -1,10 +1,11 @@
 class Event < ActiveRecord::Base
   
   has_many   :bets
+  has_one    :complete_type
   belongs_to :event_type
-  belongs_to :complete_type
   
   accepts_nested_attributes_for :bets, allow_destroy: true
+  accepts_nested_attributes_for :complete_type, allow_destroy: true  
   
   validates :name,             presence: true
   validates :first_side,       presence: true
