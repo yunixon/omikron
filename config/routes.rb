@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   scope "/admin" do
     resources :users do
-      resources :bets
+      resources :bets, only: [:new, :create]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
@@ -19,10 +19,10 @@ Rails.application.routes.draw do
     get "sign_in", to: "devise/sessions#new"
   end
   
-  resources :complete_types
   resources :event_types
   resources :events do
-    resources :bets
+    resource :complete_type, only: [:new, :create]
+    resources :bets, only: [:new, :create]
     get 'upcoming_events', to: 'events#upcoming'
     get 'recent_events',   to: 'events#recent'
   end

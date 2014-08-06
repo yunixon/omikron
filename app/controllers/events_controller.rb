@@ -29,6 +29,9 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if @event.complete_type == nil
+      @event.complete_type = CompleteType.new
+    end
   end
 
   def update
@@ -65,15 +68,47 @@ class EventsController < ApplicationController
     [:id, :result, :description, :event_id, :_destroy]
   end
   
-  # Правильно ли так?
+  # Как исправить этот говнокод?
   def play_bets
-    #allsum = @event.bets.sum("sum")
-    #allsum -= allsum*0.03
-    #@event.bets.each do |bet|
-    #  case @event.complete_type.result
-    #  when: 0
-    #  bet.update(complete_type: :)
-    #end
+    # Высчитать сумму проигравших ставок и забрать от них 3% себе :)
+    #all_sum = @event.bets.sum("sum")
+    #all_win_sum = @event.bets.where("side_bet = ? and (side_bet = 0 or side_bet = 1)", @event.complete_type.result).sum("sum")
+    #all_lose_sum = all_sum - all_win_sum
+    #fee = 0.03 #3% fee
+    #all_win_sum = @event.bets.where("side_bet = ?", @event.complete_type.result).sum("sum")
+    if @event.bets.any?
+      @event.bets.each do |bet|
+        case @event.complete_type.result
+        when 0, 1
+          if @event.complete_type.result == bet.side_bet
+            bet.update(complete_type: :win)
+            #add_to_user_balance(bet.sum, all_lose_sum, all_win_sum, fee)
+          else
+            bet.update(complete_type: :lose)
+          end
+        when 2
+          bet.update(complete_type: :draw)
+          # Возвращаем ставку
+          add_to_user_balance(bet.sum)
+        end
+      end
+    end
+  end
+  
+  private
+  
+  # Правильно ли так вычитать из баланса пользователя?
+  def add_to_user_balance(sum)
+    current_user.balance += sum
+    if current_user.save
+      flash[:success] = "Bet is returned!"
+    else
+      flash[:danger] = "Error update user balance"    
+    end
+  end
+  
+  def win_amount(sum, all_lose_sum, all_win_sum, fee)
+    return sum + sum * (all_lose_sum - fee) / all_win_sum
   end
   
 end

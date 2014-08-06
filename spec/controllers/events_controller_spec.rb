@@ -14,8 +14,7 @@ RSpec.describe EventsController, :type => :controller do
   context "when user with role admin logged in" do
     let(:admin) { FactoryGirl.create(:user, role: :admin)}
     let(:event_type) { FactoryGirl.create(:event_type) }
-    let(:complete_type) { FactoryGirl.create(:complete_type) }
-    subject { FactoryGirl.create(:event, event_type_id: :event_type, complete_type_id: :complete_type) }
+    subject { FactoryGirl.create(:event, event_type_id: :event_type) }
 
     before do
       sign_in admin

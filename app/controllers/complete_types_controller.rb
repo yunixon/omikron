@@ -2,11 +2,7 @@ class CompleteTypesController < ApplicationController
   load_and_authorize_resource param_method: :complete_type_params
   before_action :find_complete_type, only: [:show, :edit, :update]
   
-  def index
-    @complete_types = CompleteType.page(params[:page]).per(12)
-  end
-
-  def new
+   def new
     @complete_type = CompleteType.new
   end
 

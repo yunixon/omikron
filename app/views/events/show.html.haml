@@ -11,6 +11,10 @@
   #{@event.datetime_start.to_s}
   #{@event.first_side} - #{@event.second_side}
 %p
+  Result: #{@event.complete_type.result}
+%p
+  Description: #{@event.complete_type.description}
+%p
   = link_to "Make Bet!", new_event_bet_path(@event), class: 'btn btn-primary'
   
 %p
