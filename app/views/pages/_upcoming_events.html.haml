@@ -5,6 +5,7 @@
       %th.column-20 Category
       %th.column-35 Match
       %th.column-20 Event
+      %th.column-20 Count
       %th.column-20 Available
   %tbody  
     - @upcoming_events.each do |event|
@@ -17,5 +18,7 @@
           = link_to event.first_side + " - " + event.second_side, event_path(event)
         %td
           = link_to event.name, event_path(event)
+        %td
+          = event.count
         %td
           = link_to "Bet!", new_event_bet_path(event)

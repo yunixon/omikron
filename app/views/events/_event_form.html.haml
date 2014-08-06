@@ -4,5 +4,6 @@
 = f.input :first_side
 = f.input :second_side
 = f.input :datetime_start, :default => Time.now
+= f.input :count
 = f.input :complete, label: false, inline_label: 'Completed?'
 = f.association :complete_type, label_method: :result, value_method: :id, include_blank: false

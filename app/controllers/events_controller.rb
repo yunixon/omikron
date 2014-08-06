@@ -55,7 +55,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :event_type_id, :first_side, :second_side,
-      :datetime_start, :complete, :complete_type)
+      :datetime_start, :count, :complete, :complete_type)
   end
   
 end
