@@ -17,4 +17,5 @@ class Event < ActiveRecord::Base
   scope :upcoming, -> (count) { where(complete: false).last(count) }
   scope :recent, -> (count) { where(complete: true).last(count) }
   scope :sort_by_dt, -> { order(:datetime_start) }
+
 end

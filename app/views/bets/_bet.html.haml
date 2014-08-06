@@ -1,4 +1,8 @@
 %li
-  = bet.user.email
-  = bet.side_bet
-  = number_to_currency(bet.sum)
+  = link_to bet.event.name, event_path(bet.event)
+  - if bet.side_bet == 0
+    = bet.event.first_side
+  - else
+    = bet.event.second_side + " - "
+  = number_to_currency(bet.sum) + " - "
+  = bet.complete_type

@@ -2,4 +2,5 @@
   %ul.nav.nav-list
     %li.nav-header Current bets:
     %li
-      = render current_user.bets
+      - if user_signed_in? && current_user.bets.any? 
+        = render current_user.bets
