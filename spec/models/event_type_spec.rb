@@ -6,4 +6,9 @@ RSpec.describe EventType, :type => :model do
   end
 
   it { expect have_many :events }
+  it { should validate_uniqueness_of(:name) }
+  it { is_expected.not_to allow_value('').for(:name) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.not_to allow_value('').for(:description) }
+  it { is_expected.to validate_presence_of(:description) }
 end
