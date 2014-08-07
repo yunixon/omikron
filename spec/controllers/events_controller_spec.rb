@@ -71,6 +71,18 @@ RSpec.describe EventsController, :type => :controller do
           expect(response).to redirect_to events_path
         end
       end
+      context "with not valid attributes" do
+        it "it not save object to db" do
+          expect{
+            post :create, event: FactoryGirl.attributes_for(:event, name: nil)
+            }.to_not change(Event, :count)
+        end
+      
+        it "render new view" do
+          post :create, event: FactoryGirl.attributes_for(:event, name: nil)
+          expect(response).to render_template :new
+        end
+      end
     end
     
     describe "PATCH #update" do
