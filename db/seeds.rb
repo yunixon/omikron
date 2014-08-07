@@ -28,3 +28,10 @@ unless Event.any?
     datetime_start: "2014-11-17 10:00:00 UTC", complete: false, count: "0:0",
     complete_type: @ct1)
 end
+
+15.times do
+  Event.create(name: "Germany Bundesliga",
+    event_type: @et1, first_side: "FC Bayern München", second_side: "VfL Wolfsburg",
+    datetime_start: "2014-11-17 10:00:00 UTC", complete: false, count: "0:0",
+    complete_type: @ct1)
+end
