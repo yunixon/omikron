@@ -6,4 +6,6 @@ RSpec.describe CompleteType, :type => :model do
   end
 
   it { is_expected.to belong_to(:event).class_name('Event') }
+  it { is_expected.to validate_presence_of(:result) }
+
 end

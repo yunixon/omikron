@@ -7,5 +7,8 @@ RSpec.describe User, :type => :model do
   end
   
   it { is_expected.to have_many(:bets) }
+  it { is_expected.to validate_numericality_of(:balance) }
+  it { is_expected.to ensure_inclusion_of(:role).in_array(%w(user admin)) }
   
+  let(:user) { FactoryGirl.create :user, role: :user }
 end

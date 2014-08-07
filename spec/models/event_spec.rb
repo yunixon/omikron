@@ -8,5 +8,9 @@ RSpec.describe Event, :type => :model do
   it { expect have_many :bets }
   
   it { is_expected.to belong_to(:event_type).class_name('EventType') }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:first_side) }
+  it { is_expected.to validate_presence_of(:datetime_start) }
+
 
 end
