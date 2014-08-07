@@ -1,8 +1,5 @@
-- if @event.complete == false
-  = provide(:title, "New bet")
-  .container-fluid
-    %h4
-      New bet on #{@event.name}: #{@event.first_side} - #{@event.second_side}
-    = render "body_bet"  
-- else
-  - flash.now[:danger] = "Event is complited"
+= provide(:title, "New bet")
+.container-fluid
+  %h4
+    New bet on #{@event.name}: #{@event.first_side} - #{@event.second_side}
+  = render "body_bet"
