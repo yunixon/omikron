@@ -3,8 +3,8 @@
 = f.input :name
 = f.input :first_side
 = f.input :second_side
-= f.input :datetime_start, :default => Time.now
-= f.input :count
+= f.input :datetime_start, default: Time.now
+= f.input :count, default: "0-0"
 = f.input :complete, label: false, inline_label: 'Completed?'
 = f.fields_for :complete_type do |ct_form|
   / /- if ct_form.object.new_record?
