@@ -11,16 +11,5 @@
     class: 'btn btn-primary'
 - if can? :create, Event
   = link_to "Add event", new_event_type_event_path(@event_type), class: 'btn btn-primary'
-= paginate @events
-%table.table.table-hover
-  %thead
-    %tr
-      %th.column-20 Time
-      %th.column-35 Match
-      %th.column-20 Event
-      %th.column-20 Count
-      %th.column-20 Available
-      - if can? :update, Event
-        %th.column-20 Edit
-  = render @event_type.events
-= paginate @events
+
+= render "events/body_event"

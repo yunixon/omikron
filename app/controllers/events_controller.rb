@@ -82,14 +82,14 @@ class EventsController < ApplicationController
         when 0, 1
           if @event.complete_type.result == bet.side_bet
             bet.update(complete_type: :win)
-            #add_to_user_balance(bet.sum, all_lose_sum, all_win_sum, fee)
+            #add_to_user_balance(win_amount())
           else
             bet.update(complete_type: :lose)
           end
         when 2
           bet.update(complete_type: :draw)
           # Возвращаем ставку
-          add_to_user_balance(bet.sum)
+          # add_to_user_balance(bet.sum)
         end
       end
     end

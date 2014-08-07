@@ -26,7 +26,8 @@ private
   end
   
   def bet_params
-    params.require(:bet).permit(:sum, :side_bet, :event_id, :user_id, :complete_type)
+    params.require(:bet).permit(:sum, :side_bet, :event_id, :user_id,
+      :complete_type)
   end
   
   def check_balance
