@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   
   resources :event_types do
-    resources :events, only: [:index, :show]
+    resources :events, only: [:new, :index, :show]
   end
   resources :events do
     resource :complete_type, only: [:new, :create]

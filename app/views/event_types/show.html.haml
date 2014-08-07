@@ -9,7 +9,8 @@
 - if can? :destroy, @event_type
   = link_to "Delete", event_type_path(@event_type), method: :delete, data: {confirm: 'sure?'},
     class: 'btn btn-primary'
-
+- if can? :create, Event
+  = link_to "Add event", new_event_type_event_path(@event_type), class: 'btn btn-primary'
 = paginate @events
 %table.table.table-hover
   %thead
