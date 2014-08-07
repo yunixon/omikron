@@ -1,0 +1,17 @@
+%tbody  
+  %tr
+    %td
+      = event.datetime_start.to_s
+    %td
+      = link_to event.first_side + " - " + event.second_side, event_path(event)
+    %td
+      = link_to event.name, event_path(event)
+    %td
+      = event.count
+    %td
+      = link_to "Bet!", new_event_bet_path(event)
+    %td
+      - if can? :update, event
+        = link_to "Edit", edit_event_path(event)
+      - if can? :destroy, event
+        = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'}

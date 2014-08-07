@@ -15,6 +15,7 @@ class Event < ActiveRecord::Base
   validates_associated :event_type
   
   scope :completed, -> (bool)  { where(complete: bool) }
+  scope :category, -> (cat) { where(event_type: cat)}
   scope :upcoming, -> (count) { where(complete: false).last(count) }
   scope :recent, -> (count) { where(complete: true).last(count) }
   scope :sort_by_dt, -> { order(:datetime_start) }

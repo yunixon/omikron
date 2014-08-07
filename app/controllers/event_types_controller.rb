@@ -11,6 +11,9 @@ class EventTypesController < ApplicationController
   end
 
   def show
+    @search = Event.all.where(event_type: @event_type).search(params[:q])
+    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
+    #@events = @event_type.events
   end
 
   def create

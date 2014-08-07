@@ -19,12 +19,14 @@ Rails.application.routes.draw do
     get "sign_in", to: "devise/sessions#new"
   end
   
-  resources :event_types
+  resources :event_types do
+    resources :events, only: [:index, :show]
+  end
   resources :events do
     resource :complete_type, only: [:new, :create]
     resources :bets, only: [:new, :create]
-    get 'upcoming_events', to: 'events#upcoming'
-    get 'recent_events',   to: 'events#recent'
+    #get 'upcoming_events', to: 'events#upcoming'
+    #get 'recent_events',   to: 'events#recent'
   end
 
   # Example of regular route:
