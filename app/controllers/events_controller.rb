@@ -79,17 +79,20 @@ class EventsController < ApplicationController
     if @event.bets.any?
       @event.bets.each do |bet|
         case @event.complete_type.result
-        when 0, 1
+        when "first_win", "second_win"
           if @event.complete_type.result == bet.side_bet
             bet.update(complete_type: :win)
             #add_to_user_balance(win_amount())
           else
             bet.update(complete_type: :lose)
           end
-        when 2
+        when "draw"
           bet.update(complete_type: :draw)
           # Возвращаем ставку
           # add_to_user_balance(bet.sum)
+        when "unplayed"
+          # отмена розыгрыша
+          bet.update(complete_type: :unplayed)
         end
       end
     end
