@@ -7,5 +7,5 @@ RSpec.describe Transaction, :type => :model do
   
   it { is_expected.to belong_to(:user).class_name('User') }
   it { is_expected.to validate_presence_of(:t_type) }
-  it { is_expected.to validate_numericality_of(:amount) }
+  it { is_expected.to validate_presence_of(:amount) }
 end

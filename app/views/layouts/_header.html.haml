@@ -33,8 +33,6 @@
                 %li
                   = link_to "Edit Profile", edit_user_registration_path
                 %li
-                  = link_to "Transactions", "#"
-                %li
                   = link_to "Logout", destroy_user_session_path, method: :delete, class: 'dialog'
           - else
             %li= link_to "Login", new_user_session_path
