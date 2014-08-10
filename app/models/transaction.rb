@@ -5,8 +5,23 @@ class Transaction < ActiveRecord::Base
   
   validates :user_id, presence: true
   validates :t_type,  presence: true
-  validates :amount,  presence: true, numericality: { greater_than: 0.0 }
+  validates :amount,  presence: true
   
   belongs_to :user, inverse_of: :transactions
+  
+  after_create :change_user_balance
+  
+  protected
+  
+  def change_user_balance
+    puts "!!!CHANGE BALANCE"
+    self.user.balance += self.amount
+    if self.user.save
+      true
+    else
+      false
+      errors.add(:msg, "Error in change user balance!")
+    end
+  end
   
 end

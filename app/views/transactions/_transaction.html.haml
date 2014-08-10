@@ -1,10 +1,11 @@
 %li
   - case transaction.t_type
-  - when 0
-    Set bet id #{transaction.bet_id}. Expense: - number_to_currency(transaction.amount)
-  - when 1
-    Win bet. Income: + number_to_currency(transaction.amount)
-  - when 2
-    Add to balance: + number_to_currency(transaction.amount)
-  - when 3
-    Withdraw: - number_to_currency(transaction.amount)
+  - when "set_bet"
+    Set bet id #{transaction.bet_id}. Expense: #{number_to_currency(transaction.amount)}
+  - when "win_bet"
+    Win bet. Income: +#{number_to_currency(transaction.amount)}
+  - when "add_to_balance"
+    Add to balance: +#{number_to_currency(transaction.amount)}
+  - when "withdraw_from_balance"
+    Withdraw: #{number_to_currency(transaction.amount)}
+  Completed: #{transaction.complete.to_s}

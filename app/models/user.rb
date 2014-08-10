@@ -13,5 +13,5 @@ class User < ActiveRecord::Base
   validates :balance, numericality: { greater_than_or_equal_to: 0.0 }
   
   accepts_nested_attributes_for :bets, allow_destroy: true
-
+  
 end

@@ -1,7 +1,11 @@
 class TransactionsController < ApplicationController
   load_and_authorize_resource param_method: :transaction_params
   before_action :find_bet, only: [:create]
-   
+  
+  def new
+    @transaction = Transaction.new
+  end
+  
   def create
     @transaction = Transaction.new(transaction_params.merge(user: current_user, bet: @bet))
     if @transaction.save            

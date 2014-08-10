@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   scope "/admin" do
     resources :users do
-      resources :transactions, only: [:create]
+      resources :transactions, only: [:new, :create]
       resources :bets, only: [:new, :create]
     end
   end

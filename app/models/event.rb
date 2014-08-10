@@ -29,42 +29,33 @@ class Event < ActiveRecord::Base
     fee = 0.03*all_bets_lose_sum #3% fee
     if self.bets.any?
       self.bets.each do |bet|
-        case self.complete_type.result
-        when "first_win", "second_win"
-          if self.complete_type.result == bet.side_bet
-            bet.update(complete: true, complete_type: :win) unless bet.complete
-            # add transaction
-            win_amount = bet.sum + bet.sum * (all_bets_lose_sum - fee) / all_bets_win_sum
-            add_to_user_balance(win_amount) unless bet.complete
+        puts "!!!!#{self.complete_type.result} - #{bet.side_bet} - #{bet.complete.to_s}"
+        if (self.complete_type.result == bet.side_bet && (not bet.complete))
+          bet.update(complete: true, complete_type: :win)
+          win_amount = bet.sum + bet.sum * (all_bets_lose_sum - fee) / all_bets_win_sum
+          @transaction = Transaction.new(user: bet.user, bet_id: bet.id,
+            amount: bet.sum, t_type: :win_bet)
+          if @transaction.save
+            @transaction.update(complete: true)
           else
-            bet.update(complete: true, complete_type: :lose) unless bet.complete
+            errors.add(:msg, "Error: transaction not saved")
           end
-        when "draw"
-          bet.update(complete: true, complete_type: :draw) unless bet.complete
-          #На данном этапе draw - это тоже lose ставка
-        when "unplayed"
-          # отмена розыгрыша
-          bet.update(complete: false, complete_type: :unplayed) if bet.complete
-          #Создать возвратные транзакции unless bet.complete
+        elsif (self.complete_type.result != bet.side_bet &&
+          self.complete_type.result != "unplayed" && (not bet.complete))
+          bet.update(complete: true, complete_type: :lose)
+        elsif (self.complete_type.result == "unplayed")
+          bet.update(complete: false, complete_type: :unplayed)
+          # Возвратные транзакции
+          @transaction = Transaction.new(user: bet.user, bet_id: bet.id,
+            amount: bet.sum, t_type: :set_bet)
+          if @transaction.save
+            @transaction.update(complete: true)
+          else
+            errors.add(:msg, "Error: transaction not saved")
+          end
         end
       end
     end
-  end
-  
-  # А может работа с балансом пользователя в user модели?
-  def add_to_user_balance(sum)
-    self.user.balance += sum
-    if self.user.save
-      true
-      puts "Added to user"
-    else
-      false
-      errors.add(:msg, "Error in update user balance!")
-    end
-  end
-  
-  def win_amount(sum, all_lose_sum, all_win_sum, fee)
-    return sum + sum * (all_lose_sum - fee) / all_win_sum
   end
   
 end

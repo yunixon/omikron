@@ -1,7 +1,7 @@
 class Bet < ActiveRecord::Base
   extend Enumerize
-  enumerize :side_bet, in: { first_win: 0, second_win: 1 }
-  enumerize :complete_type, in: { lose: 0, win: 1, draw: 2, unplayed: 3 }, default: :unplayed
+  enumerize :side_bet, in: { first_win: 0, second_win: 1, draw: 2 }
+  enumerize :complete_type, in: { lose: 0, win: 1, unplayed: 2 }, default: :unplayed
  
   belongs_to :user
   belongs_to :event
@@ -14,19 +14,37 @@ class Bet < ActiveRecord::Base
   # TODO error on current_user
   #scope :for_this_user, -> { where("user_id = ?", current_user) }
   
-  after_save :deduct_from_user_balance
+  before_validation :check_balance, on: :create
+  before_validation :check_event, on: :create
+  after_create :create_transaction
   
   protected
   
-  # Может это в модель User?
-  def deduct_from_user_balance
-    self.user.balance -= self.sum
-    if self.user.save
+  def check_balance
+    if self.sum <= self.user.balance 
       true
-      puts "Bet is added"
     else
+      self.errors.add(:msg, "Error: not money")
       false
-      errors.add(:msg, "Error in update user balance!")
+    end
+  end
+  
+  def check_event
+    if self.event.complete
+      self.errors.add(:msg, "Error: event is completed")
+      false
+    else
+      true
+    end
+  end
+  
+  def create_transaction
+    @transaction = Transaction.new(user: self.user, bet_id: self.id, amount: -self.sum,
+      t_type: :set_bet)
+    if @transaction.save
+      @transaction.update(complete: true)
+    else
+      errors.add(:msg, "Error: transaction not saved")
     end
   end
   
