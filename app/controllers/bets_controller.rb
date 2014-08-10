@@ -1,18 +1,16 @@
 class BetsController < ApplicationController
   load_resource :event
   load_and_authorize_resource :bet, through: :event
-  before_action :find_event
+  before_action :find_event, only: [:create, :check_event]
   before_action :check_balance, only: [:create]
   before_action :check_event, only: [:create]
-  after_action  :deduct_from_user_balance, only: [:create]
  
   def new
     @bet = Bet.new
   end
   
   def create
-    @bet = @event.bets.new(bet_params)
-    @bet.user = current_user #Можно ли так?
+    @bet = Bet.new(bet_params.merge(event: @event, user: current_user))
     if @bet.save            
       redirect_to events_path
     else
@@ -39,19 +37,9 @@ private
   end
   
   def check_event
-    if @event.complete == true
+    if @event.complete
       flash[:danger] = "Event is complited"
       redirect_to root_url
-    end
-  end
-  
-  # Правильно ли так вычитать из баланса пользователя?
-  def deduct_from_user_balance
-    current_user.balance -= @bet.sum
-    if current_user.save
-      flash[:success] = "Bet is added!"
-    else
-      flash[:danger] = "Error update user balance"    
     end
   end
   

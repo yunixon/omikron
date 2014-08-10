@@ -18,3 +18,8 @@
   = render @user.bets
   %h3
     All bets sum: #{number_to_currency(current_user.bets.sum("sum"))}
+%p
+- if @user.transactions.any?
+  %h3
+    Transactions:
+  = render @user.transactions

@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   load_and_authorize_resource param_method: :event_params
   before_action :find_event, only: [:show, :edit, :update]
-  after_action :play_bets, only: [:update]
   
   def index
     @search = Event.search(params[:q])
@@ -29,7 +28,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    if @event.complete_type == nil
+    if @event.complete_type.nil?
       @event.complete_type = CompleteType.new
     end
   end
@@ -66,52 +65,6 @@ class EventsController < ApplicationController
   
   def complete_type_params
     [:id, :result, :description, :event_id, :_destroy]
-  end
-  
-  # Как исправить этот говнокод?
-  def play_bets
-    # Высчитать сумму проигравших ставок и забрать от них 3% себе :)
-    #all_sum = @event.bets.sum("sum")
-    #all_win_sum = @event.bets.where("side_bet = ? and (side_bet = 0 or side_bet = 1)", @event.complete_type.result).sum("sum")
-    #all_lose_sum = all_sum - all_win_sum
-    #fee = 0.03 #3% fee
-    #all_win_sum = @event.bets.where("side_bet = ?", @event.complete_type.result).sum("sum")
-    if @event.bets.any?
-      @event.bets.each do |bet|
-        case @event.complete_type.result
-        when "first_win", "second_win"
-          if @event.complete_type.result == bet.side_bet
-            bet.update(complete_type: :win)
-            #add_to_user_balance(win_amount())
-          else
-            bet.update(complete_type: :lose)
-          end
-        when "draw"
-          bet.update(complete_type: :draw)
-          # Возвращаем ставку
-          # add_to_user_balance(bet.sum)
-        when "unplayed"
-          # отмена розыгрыша
-          bet.update(complete_type: :unplayed)
-        end
-      end
-    end
-  end
-  
-  private
-  
-  # Правильно ли так вычитать из баланса пользователя?
-  def add_to_user_balance(sum)
-    current_user.balance += sum
-    if current_user.save
-      flash[:success] = "Bet is returned!"
-    else
-      flash[:danger] = "Error update user balance"    
-    end
-  end
-  
-  def win_amount(sum, all_lose_sum, all_win_sum, fee)
-    return sum + sum * (all_lose_sum - fee) / all_win_sum
   end
   
 end

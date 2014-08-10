@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :bets
+  has_many :transactions, inverse_of: :user
   
   validates :balance, numericality: { greater_than_or_equal_to: 0.0 }
   

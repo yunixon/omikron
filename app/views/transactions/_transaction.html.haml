@@ -1,0 +1,10 @@
+%li
+  - case transaction.t_type
+  - when 0
+    Set bet id #{transaction.bet_id}. Expense: - number_to_currency(transaction.amount)
+  - when 1
+    Win bet. Income: + number_to_currency(transaction.amount)
+  - when 2
+    Add to balance: + number_to_currency(transaction.amount)
+  - when 3
+    Withdraw: - number_to_currency(transaction.amount)

@@ -14,4 +14,20 @@ class Bet < ActiveRecord::Base
   # TODO error on current_user
   #scope :for_this_user, -> { where("user_id = ?", current_user) }
   
+  after_save :deduct_from_user_balance
+  
+  protected
+  
+  # Может это в модель User?
+  def deduct_from_user_balance
+    self.user.balance -= self.sum
+    if self.user.save
+      true
+      puts "Bet is added"
+    else
+      false
+      errors.add(:msg, "Error in update user balance!")
+    end
+  end
+  
 end
