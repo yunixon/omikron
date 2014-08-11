@@ -52,6 +52,8 @@ gem 'haml'
 gem 'cancancan'
 gem 'kaminari'
 gem 'ransack'
+gem 'nested_form'
+gem 'whenever', :require => false
 
 group :prodaction do
   gem 'rails_12factor'

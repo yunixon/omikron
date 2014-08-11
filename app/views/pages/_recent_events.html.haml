@@ -5,6 +5,7 @@
       %th.column-20 Category
       %th.column-35 Match
       %th.column-20 Event
+      %th.column-20 Count
   %tbody  
     - @recent_events.each do |event|
       %tr
@@ -16,3 +17,5 @@
           = link_to event.first_side + " - " + event.second_side, event_path(event)
         %td
           = link_to event.name, event_path(event)
+        %td
+          = event.count

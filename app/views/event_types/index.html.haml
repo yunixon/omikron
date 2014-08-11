@@ -2,5 +2,5 @@
 %h2
   All categories:
   - if can? :create, @event_type
-    = link_to "Add category", new_event_type_path
+    = link_to "Add category", new_event_type_path, class: 'btn btn-primary'
 = render "body_event_type"

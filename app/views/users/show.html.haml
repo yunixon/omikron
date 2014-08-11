@@ -1,10 +1,25 @@
 - provide(:title, "#{@user.email}")
-%h2
-  User: #{@user.email}
-%h2 Balance: #{number_to_currency(@user.balance)}
+%h3
+  #{@user.email}
+- if can? :update, @user
+  %p
+    = link_to "Edit user", edit_user_path(@user), class: 'btn btn-primary'
+    - if can? :destroy, @user
+      = link_to "Delete user", user_path(@user), method: :delete, data: {confirm: 'sure?'},
+        class: 'btn btn-primary'
+%h3
+  Balance: #{number_to_currency(@user.balance)}
 %p 
 - if @user.bets.any?
   -#
     Тут выбор даты/календарь/пагинация
-    %h4 Bets:
-      = render @user.bets
+  %h3
+    Bets:
+  = render @user.bets
+  %h3
+    All bets sum: #{number_to_currency(current_user.bets.sum("sum"))}
+%p
+- if @user.transactions.any?
+  %h3
+    Transactions:
+  = render @user.transactions

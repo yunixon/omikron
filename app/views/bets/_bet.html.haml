@@ -1,0 +1,10 @@
+%li
+  = link_to bet.event.name, event_path(bet.event)
+  - if bet.side_bet == "first_win"
+    = bet.event.first_side
+  - elsif bet.side_bet == "draw"
+    Draw
+  - else
+    = bet.event.second_side + " - "
+  = number_to_currency(bet.sum) + " - "
+  = bet.complete_type

@@ -14,8 +14,7 @@ RSpec.describe EventsController, :type => :controller do
   context "when user with role admin logged in" do
     let(:admin) { FactoryGirl.create(:user, role: :admin)}
     let(:event_type) { FactoryGirl.create(:event_type) }
-    let(:complete_type) { FactoryGirl.create(:complete_type) }
-    subject { FactoryGirl.create(:event, event_type_id: :event_type, complete_type_id: :complete_type) }
+    subject { FactoryGirl.create(:event, event_type_id: :event_type) }
 
     before do
       sign_in admin
@@ -70,6 +69,18 @@ RSpec.describe EventsController, :type => :controller do
         it "redirects to index path" do
           post :create, event: FactoryGirl.attributes_for(:event)
           expect(response).to redirect_to events_path
+        end
+      end
+      context "with not valid attributes" do
+        it "it not save object to db" do
+          expect{
+            post :create, event: FactoryGirl.attributes_for(:event, name: nil)
+            }.to_not change(Event, :count)
+        end
+      
+        it "render new view" do
+          post :create, event: FactoryGirl.attributes_for(:event, name: nil)
+          expect(response).to render_template :new
         end
       end
     end

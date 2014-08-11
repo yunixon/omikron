@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   
   def index
     @search = Event.search(params[:q])
-    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(10)
+    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
   end
 
   def show
@@ -12,10 +12,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.complete_type = CompleteType.new
   end
 
   def create
     @event = Event.new(event_params)
+    @event.complete_type = CompleteType.new
     if @event.save
       flash[:success] = "Event added!"
       redirect_to events_path
@@ -26,6 +28,9 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if @event.complete_type.nil?
+      @event.complete_type = CompleteType.new
+    end
   end
 
   def update
@@ -55,7 +60,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :event_type_id, :first_side, :second_side,
-      :datetime_start, :complete, :complete_type)
+      :datetime_start, :count, :complete, complete_type_attributes: complete_type_params)
+  end
+  
+  def complete_type_params
+    [:id, :result, :description, :event_id, :_destroy]
   end
   
 end

@@ -1,7 +1,8 @@
 .well.sidebar-nav
   %ul.nav.nav-list
     %li.nav-header Categories:
-    - EventType.last(10).each do |cat|
-      %li= cat.name
+    - EventType.all.each do |cat|
+      %li
+        = link_to cat.name, event_type_path(cat)
       
     = link_to "See all categories", event_types_path

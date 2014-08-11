@@ -9,6 +9,5 @@ FactoryGirl.define do
     datetime_start "2014-07-26 03:30:34"
     complete false
     count { Faker::Lorem.characters(rand(3..5)) } #0-0 или 12-14
-    association :complete_type, factory: :complete_type
   end
 end

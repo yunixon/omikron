@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Bet, :type => :model do
+  
+  let(:user) { FactoryGirl.create(:user, role: :user, balance: 500)}
+  
   it "has a valid factory" do
     expect(FactoryGirl.build(:bet)).to be_valid
   end

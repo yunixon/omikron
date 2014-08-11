@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :complete_type do
-    result { Faker::Lorem.word }
+    association :event, factory: :event
+    result { Faker::Number.between(0, 3).to_i }
     description { Faker::Lorem.sentence }
   end
 end

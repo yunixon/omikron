@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801160125) do
+ActiveRecord::Schema.define(version: 20140810082853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 20140801160125) do
   end
 
   create_table "complete_types", force: true do |t|
-    t.string   "result"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "result"
+    t.integer  "event_id"
   end
 
   create_table "event_types", force: true do |t|
@@ -48,8 +49,19 @@ ActiveRecord::Schema.define(version: 20140801160125) do
     t.string   "second_side"
     t.datetime "datetime_start"
     t.boolean  "complete"
-    t.string   "count"
+    t.string   "count",            default: "0-0"
     t.integer  "complete_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "bet_id"
+    t.boolean  "complete",      default: false
+    t.decimal  "amount"
+    t.integer  "t_type",        default: 0
+    t.integer  "complete_type", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

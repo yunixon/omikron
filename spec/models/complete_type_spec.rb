@@ -5,5 +5,7 @@ RSpec.describe CompleteType, :type => :model do
   	expect(FactoryGirl.build(:complete_type)).to be_valid
   end
 
-  it { expect have_many :events }
+  it { is_expected.to belong_to(:event).class_name('Event') }
+  it { is_expected.to validate_presence_of(:result) }
+
 end

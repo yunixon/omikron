@@ -1,5 +1,5 @@
 - provide(:title, "Event | #{@event.name}")
-%h2
+%h4
   #{@event.name}
 - if can? :update, @event
   %p
@@ -10,6 +10,17 @@
       class: 'btn btn-primary'
 %h4
   #{@event.datetime_start.to_s}
-  #{@event.first_side} - #{@event.second_side}
+  #{@event.first_side} - #{@event.second_side} (#{@event.count})
+- unless @event.complete_type.nil?
+  %p
+    Result: #{@event.complete_type.result}
+  %p
+    Description: #{@event.complete_type.description}
 %p
-  = link_to "Make Bet!", "#"
+  = link_to "Make Bet!", new_event_bet_path(@event), class: 'btn btn-primary'
+  
+%p
+  - if @event.bets.any?
+    %h4
+      Bets:
+      = render @event.bets.where("user_id = ?", current_user) #TODO: scope in bet not working (for_this_user)
