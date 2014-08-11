@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   scope :sort_by_dt, -> { order(:datetime_start) }
 
   after_save :play_bets
-  
+   
   protected
   
   def play_bets
@@ -55,6 +55,16 @@ class Event < ActiveRecord::Base
           end
         end
       end
+    end
+  end
+  
+  def self.start_events
+    events = Event.all.where("datetime_start <= ? and complete = ?", Time.now, false)
+    puts Time.now.to_s
+    events.each do |event|
+      puts event.name + " - " + event.first_side + " vs " + event.second_side + " : " + event.datetime_start.to_s
+      #Посылаем письмо админу о стартанувших евентах
+      Notifier.start_event_mail(event).deliver
     end
   end
   
