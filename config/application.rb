@@ -30,5 +30,6 @@ module Omikron
       g.fixture_replacement :factory_girl, :dir =>'spec/factories'
     end
     
+    config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
   end
 end

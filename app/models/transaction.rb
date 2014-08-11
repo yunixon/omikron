@@ -14,7 +14,6 @@ class Transaction < ActiveRecord::Base
   protected
   
   def change_user_balance
-    puts "!!!CHANGE BALANCE"
     self.user.balance += self.amount
     if self.user.save
       true

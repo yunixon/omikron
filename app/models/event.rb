@@ -29,7 +29,6 @@ class Event < ActiveRecord::Base
     fee = 0.03*all_bets_lose_sum #3% fee
     if self.bets.any?
       self.bets.each do |bet|
-        puts "!!!!#{self.complete_type.result} - #{bet.side_bet} - #{bet.complete.to_s}"
         if (self.complete_type.result == bet.side_bet && (not bet.complete))
           bet.update(complete: true, complete_type: :win)
           win_amount = bet.sum + bet.sum * (all_bets_lose_sum - fee) / all_bets_win_sum
@@ -60,9 +59,7 @@ class Event < ActiveRecord::Base
   
   def self.start_events
     events = Event.all.where("datetime_start <= ? and complete = ?", Time.now, false)
-    puts Time.now.to_s
     events.each do |event|
-      puts event.name + " - " + event.first_side + " vs " + event.second_side + " : " + event.datetime_start.to_s
       #Посылаем письмо админу о стартанувших евентах
       Notifier.start_event_mail(event).deliver
     end
