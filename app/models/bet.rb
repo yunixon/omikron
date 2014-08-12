@@ -13,6 +13,7 @@ class Bet < ActiveRecord::Base
 
   # TODO error on current_user
   #scope :for_this_user, -> { where("user_id = ?", current_user) }
+  scope :unplayed, -> { where("complete_type = ?", 2) }
   
   before_validation :check_balance, on: :create
   before_validation :check_event, on: :create
