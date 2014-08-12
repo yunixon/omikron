@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :complete_type, allow_destroy: true  
   
   validates :name, :first_side, :second_side, :datetime_start, presence: true
-  validates :name, :first_side, :second_side, length: {minimum: 2}
+  validates :name, :first_side, :second_side, length: {minimum: 2, maximum: 80}
   validates_associated :event_type
   
   scope :completed, -> (bool)  { where(complete: bool) }
