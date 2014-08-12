@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base 
   
-  has_many   :bets
-  has_one    :complete_type
+  has_many   :bets, dependent: :destroy
+  has_one    :complete_type, dependent: :destroy
   belongs_to :event_type
   
   accepts_nested_attributes_for :bets, allow_destroy: true
