@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   validates :name, :first_side, :second_side, length: {minimum: 2, maximum: 80}
   validates_associated :event_type
   
+  default_scope -> { order('created_at DESC') }
   scope :completed, -> (bool)  { where(complete: bool) }
   scope :category, -> (cat) { where(event_type: cat) }
   scope :upcoming, -> (count) { where(complete: false).last(count) }

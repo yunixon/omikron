@@ -14,12 +14,12 @@
   -#
     Тут выбор даты/календарь/пагинация
   %h3
-    Bets:
-  = render @user.bets
+    = link_to "Bets:", user_bets_path(@user)
+  = render @user.bets.last(10)
   %h3
     All bets sum: #{number_to_currency(current_user.bets.sum("sum"))}
 %p
 - if @user.transactions.any?
   %h3
     Transactions:
-  = render @user.transactions
+  = render @user.transactions.last(10)
