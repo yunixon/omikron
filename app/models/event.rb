@@ -64,9 +64,11 @@ class Event < ActiveRecord::Base
   
   def self.start_events
     events = Event.where("datetime_start <= ? and complete = ?", Time.now, false)
+    admins = User.where(role: 1)
     events.each do |event|
-      #Посылаем письмо админу о стартанувших евентах
-      Notifier.start_event_mail(event).deliver
+      admins.each do |admin|
+        Notifier.start_event_mail(event, admin).deliver
+      end
     end
   end
   
