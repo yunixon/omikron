@@ -24,11 +24,23 @@ class Event < ActiveRecord::Base
   
   def play_bets
     self.bets.each do |bet|
-      user_win(bet) if self.complete_type.result == bet.side_bet && !bet.complete
-      user_lose(bet) if self.complete_type.result != bet.side_bet &&
-        self.complete_type.result != "unplayed" && !bet.complete
-      user_return(bet) if self.complete_type.result == "unplayed"
+      user_win(bet) if is_winner?(bet)
+      user_lose(bet) if is_loser?(bet)
+      user_return(bet) if is_unplayed?
     end
+  end
+  
+  def is_winner?(bet)
+     self.complete_type.result == bet.side_bet && !bet.complete
+  end
+  
+  def is_loser?(bet)
+    self.complete_type.result != bet.side_bet &&
+      self.complete_type.result != "unplayed" && !bet.complete
+  end
+  
+  def is_unplayed?
+    self.complete_type.result == "unplayed"
   end
   
   def user_win(bet)

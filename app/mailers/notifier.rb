@@ -4,7 +4,6 @@ class Notifier < ActionMailer::Base
     @event = event
     @url  = event_url(event)
     mail(to: admin.email, subject: 'Event start: ' + @event.name)
-    puts "mail send to: #{admin.email}"
   end
   
 end
