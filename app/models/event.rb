@@ -24,13 +24,10 @@ class Event < ActiveRecord::Base
   
   def play_bets
     self.bets.each do |bet|
-      if self.complete_type.result == bet.side_bet && !bet.complete
-        user_win(bet)
-      elsif self.complete_type.result != bet.side_bet &&
-        user_lose(bet)
-      elsif (self.complete_type.result == "unplayed")
-        user_return(bet)
-      end
+      user_win(bet) if self.complete_type.result == bet.side_bet && !bet.complete
+      user_lose(bet) if self.complete_type.result != bet.side_bet &&
+        self.complete_type.result != "unplayed" && !bet.complete
+      user_return(bet) if self.complete_type.result == "unplayed"
     end
   end
   
@@ -46,7 +43,6 @@ class Event < ActiveRecord::Base
   end
   
   def user_lose(bet)
-    self.complete_type.result != "unplayed" && !bet.complete
     bet.update(complete: true, complete_type: :lose)
   end
   
