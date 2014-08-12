@@ -1,5 +1,5 @@
 = simple_form_for ([@event, @bet]) do |f|
   = render 'shared/error_messages', object: f.object
-  = f.input :side_bet
+  = f.input :side_bet, include_blank: false
   = f.input :sum
   = f.submit "Add", class: "btn btn-primary"

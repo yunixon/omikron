@@ -2,7 +2,7 @@ class BetsController < ApplicationController
   load_resource :event
   load_and_authorize_resource :bet, through: :event
   before_action :find_event, only: [:create, :check_event]
- 
+   
   def new
     @bet = Bet.new
   end

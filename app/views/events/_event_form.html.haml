@@ -1,5 +1,6 @@
 = render 'shared/error_messages', object: f.object
-= f.association :event_type, label_method: :name, value_method: :id, include_blank: false
+= f.association :event_type, label_method: :name, value_method: :id,
+  include_blank: false, selected: params[:event_type_id]
 = f.input :name
 = f.input :first_side
 = f.input :second_side
@@ -8,5 +9,5 @@
 = f.input :complete, label: false, inline_label: 'Completed?'
 = f.fields_for :complete_type do |ct_form|
   / /- if ct_form.object.new_record?
-  = ct_form.input :result
+  = ct_form.input :result, include_blank: false
   = ct_form.input :description, as: :text

@@ -7,10 +7,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  has_many :bets
-  has_many :transactions, inverse_of: :user
+  has_many :bets, dependent: :destroy
+  has_many :transactions, inverse_of: :user, dependent: :destroy
   
-  validates :balance, numericality: { greater_than_or_equal_to: 0.0 }
+  validates :balance, numericality: { greater_than_or_equal_to: 0.0, less_than: 999999.99 }
   
   accepts_nested_attributes_for :bets, allow_destroy: true
   

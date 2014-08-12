@@ -11,8 +11,8 @@ class Bet < ActiveRecord::Base
   validates_associated :event
   validates_associated :user
 
-  # TODO error on current_user
-  #scope :for_this_user, -> { where("user_id = ?", current_user) }
+  default_scope -> { order('created_at DESC') }
+  scope :unplayed, -> { where(complete_type: 2) }
   
   before_validation :check_balance, on: :create
   before_validation :check_event, on: :create

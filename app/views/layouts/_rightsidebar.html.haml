@@ -3,4 +3,4 @@
     %li.nav-header Current bets:
     %li
       - if user_signed_in? && current_user.bets.any? 
-        = render current_user.bets
+        = render current_user.bets.unplayed
