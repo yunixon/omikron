@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :complete_type, allow_destroy: true  
   
   validates :name, :first_side, :second_side, :datetime_start, presence: true
-  validates :name, :first_side, :second_side, length: {minimum: 2, maximum: 80}
+  validates :name, :first_side, :second_side, length: {minimum: 2, maximum: 60}
   validates :count, length: { minimum: 3, maximum: 7 },
     format: { with: /(\d{1,2})[.-](\d{1,2})/,
     message: "Count number format - X-X" }

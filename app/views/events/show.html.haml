@@ -8,7 +8,9 @@
     class: 'btn btn-primary'
 %h4
   #{@event.datetime_start.to_s}
-  #{@event.first_side} - #{@event.second_side} (#{@event.count})
+  %p
+    #{@event.first_side} (#{@event.count}) 
+    #{@event.second_side}
 - unless @event.complete_type.nil?
   %p
     Result: #{@event.complete_type.result}

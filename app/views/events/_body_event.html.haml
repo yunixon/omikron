@@ -16,11 +16,11 @@
         %td
           = event.datetime_start.to_s
         %td
-          = event.event_type.name
+          = truncate(event.event_type.name, length: 16)
         %td
-          = link_to event.first_side + " - " + event.second_side, event_path(event)
+          = link_to event.first_side + " - " + event.second_side, event_path(event)}
         %td
-          = link_to event.name, event_path(event)
+          = link_to truncate(event.name, length: 16), event_path(event)
         %td
           = event.count
         %td

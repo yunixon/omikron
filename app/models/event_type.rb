@@ -4,7 +4,7 @@ class EventType < ActiveRecord::Base
   
   accepts_nested_attributes_for :events
 
-  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 80 }
-  validates :description, presence: true, length: { minimum: 2, maximum: 1000 }
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 60 }
+  validates :description, presence: true, length: { minimum: 2, maximum: 300 }
   
 end
