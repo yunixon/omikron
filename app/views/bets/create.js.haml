@@ -1,0 +1,4 @@
+var new_bet = $("#{escape_javascript(render(partial: @bet))}").hide();
+$('#bets').prepend(new_bet);
+$('#bet_#{@bet.id}').fadeIn('slow');
+$('#new_bet')[0].reset();

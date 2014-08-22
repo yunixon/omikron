@@ -8,11 +8,16 @@ class BetsController < ApplicationController
   end
   
   def create
-    @bet = Bet.new(bet_params.merge(event: @event, user: current_user))
-    if @bet.save   
-      redirect_to events_path
-    else
-      render "new"
+    @bet = Bet.create(bet_params.merge(event: @event, user: current_user))
+    respond_to do |format|
+      if @bet.save
+        format.html { redirect_to @event, notice: 'Bet was successfully created.' }
+        format.json { render :show, status: :created, location: @bet }
+        format.js #create.js.haml
+      else
+        format.html { render :new }
+        format.json { render json: @bet.errors, status: :unprocessable_entity }
+      end
     end
   end
   

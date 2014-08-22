@@ -1,4 +1,4 @@
-= simple_form_for ([@event, @bet]) do |f|
+= simple_form_for([@event, @bet || Bet.new], remote: true) do |f|
   = render 'shared/error_messages', object: f.object
   = f.input :side_bet, include_blank: false
   = f.input :sum

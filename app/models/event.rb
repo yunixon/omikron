@@ -14,7 +14,6 @@ class Event < ActiveRecord::Base
     message: "Count number format - X-X" }
   validates_associated :event_type
   
-  default_scope -> { order('created_at DESC') }
   scope :completed, -> (bool)  { where(complete: bool) }
   scope :category, -> (cat) { where(event_type: cat) }
   scope :upcoming, -> (count) { where(complete: false).last(count) }

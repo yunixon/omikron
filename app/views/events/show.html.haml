@@ -23,4 +23,7 @@
   - if @event.bets.any?
     %h4
       Bets:
+    #bets
       = render @event.bets.where("user_id = ?", current_user) #TODO: scope in bet not working (for_this_user)
+
+= render "bets/bet_form"
