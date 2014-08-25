@@ -1,33 +1,18 @@
-= paginate @events
-%table.table.table-hover
-  %thead
-    %tr
-      %th.column-20 Time
-      %th.column-20 Category
-      %th.column-35 Match
-      %th.column-20 Event
-      %th.column-20 Count
-      %th.column-20 Available
-      - if can? :update, Event
-        %th.column-20 Edit
-  %tbody  
-    - @events.each do |event|
-      %tr
-        %td
-          = event.datetime_start.to_s
-        %td
-          = truncate(event.event_type.name, length: 16)
-        %td
-          = link_to event.first_side + " - " + event.second_side, event_path(event)
-        %td
-          = link_to truncate(event.name, length: 16), event_path(event)
-        %td
-          = event.count
-        %td
-          = link_to "Bet!", new_event_bet_path(event)
-        %td
-          - if can? :update, event
-            = link_to "Edit", edit_event_path(event)
-          - if can? :destroy, event
-            = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'}
-= paginate @events
+%tr
+  %td
+    = event.datetime_start.to_s
+  %td
+    = truncate(event.event_type.name, length: 16)
+  %td
+    = link_to event.first_side + " - " + event.second_side, event_path(event)
+  %td
+    = link_to truncate(event.name, length: 16), event_path(event)
+  %td
+    = event.count
+  %td
+    = link_to "Bet!", new_event_bet_path(event)
+  %td
+    - if can? :update, event
+      = link_to "Edit", '#new_event_modal', locals: {event: event }, 'data-toggle' => 'modal' #edit_event_path(event)
+    - if can? :destroy, event
+      = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'}

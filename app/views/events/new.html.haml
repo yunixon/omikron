@@ -1,7 +1,5 @@
 - provide(:title, 'Add event')
 %h2 Add event
-= simple_nested_form_for(@event) do |f|
-  = render 'event_form', f: f
-  = f.submit "Add", class: "btn btn-primary"
+= render 'event_form'
 %p
   = link_to '< back', :back, class: 'btn btn-primary'
