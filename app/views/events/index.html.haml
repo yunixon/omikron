@@ -19,6 +19,6 @@
         %th.column-20 Edit
   %tbody  
     - @events.each do |event|
-      = render partial: "body_event", locals: {event: event}
+      = render 'body_event', event: event
 
 = render 'layouts/event_modal'

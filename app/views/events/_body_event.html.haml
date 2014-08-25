@@ -13,6 +13,6 @@
     = link_to "Bet!", new_event_bet_path(event)
   %td
     - if can? :update, event
-      = link_to "Edit", '#new_event_modal', locals: {event: event }, 'data-toggle' => 'modal' #edit_event_path(event)
+      = link_to "Edit", '#new_event_modal', 'data-toggle' => 'modal' #edit_event_path(event)
     - if can? :destroy, event
       = link_to "Delete", event_path(event), method: :delete, data: {confirm: 'sure?'}
