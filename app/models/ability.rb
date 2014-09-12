@@ -9,7 +9,7 @@ class Ability
       can :manage, :all
     else
       can :read, :all
-      can [:create], Bet unless user.id.nil?
+      can [:create], Bet
     end
     #
     # The first argument to `can` is the action you are giving the user

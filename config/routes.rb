@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :events do
     resource :complete_type, only: [:new, :create]
     resources :bets, only: [:new, :create]
+    get "delete"
     #get 'upcoming_events', to: 'events#upcoming'
     #get 'recent_events',   to: 'events#recent'
   end

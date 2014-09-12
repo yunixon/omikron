@@ -1,0 +1,8 @@
+#new_event_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", tabindex: "-1", style: "display: none"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h4#myModalLabel.modal-title Create new event
+  .modal-body
+    = render 'event_form'
+  .modal-footer
+    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

@@ -1,0 +1,25 @@
+%table.table.table-bordered.table-striped.event-index
+  %thead
+    %tr
+      %th Time
+      %th Category
+      %th Match
+      %th Event
+      %th Count
+      %th Available
+      - if can? :update, Event
+        %th Edit
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= event.datetime_start.to_s
+        %td= truncate(event.event_type.name, length: 16)
+        %td= link_to event.first_side + " - " + event.second_side, event_path(event)
+        %td= link_to truncate(event.name, length: 16), event_path(event)
+        %td= event.count
+        %td= link_to "Bet!", new_event_bet_path(event)
+        %td
+          - if can? :update, event
+            = link_to "Edit", edit_event_path(event), remote: true, class: "btn"
+          - if can? :destroy, event
+            = link_to "Delete", event_delete_path(event), remote: true, class: "btn btn-danger"

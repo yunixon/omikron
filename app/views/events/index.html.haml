@@ -4,21 +4,8 @@
 %h2
   All events:
   - if can? :create, @event
-    = link_to "Add event", '#new_event_modal', 'data-toggle' => 'modal', class: 'btn btn-primary'
+    = link_to "Add event", new_event_path, remote: true, class: 'btn btn-primary'
 = paginate @events
-%table.table.table-hover#events_table
-  %thead
-    %tr
-      %th.column-20 Time
-      %th.column-20 Category
-      %th.column-35 Match
-      %th.column-20 Event
-      %th.column-20 Count
-      %th.column-20 Available
-      - if can? :update, Event
-        %th.column-20 Edit
-  %tbody  
-    - @events.each do |event|
-      = render 'body_event', event: event
+= render "index"
 
-= render 'layouts/event_modal'
+#event-modal.modal.hide.fade

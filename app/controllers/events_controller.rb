@@ -1,13 +1,11 @@
 class EventsController < ApplicationController
   load_and_authorize_resource param_method: :event_params
-  before_action :find_event, only: [:show, :edit, :update]
-  
+  before_action :find_event, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
+
   def index
     @search = Event.search(params[:q])
     @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
-    
-    @event = Event.new
-    @event.complete_type = CompleteType.new
   end
 
   def show
@@ -19,19 +17,15 @@ class EventsController < ApplicationController
   end
 
   def create
+    @search = Event.category(@event.event_type_id).search(params[:q])
+    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
     @event = Event.new(event_params)
     @event.complete_type = CompleteType.new
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-        format.js   { render :show, status: :created, location: @event }
-      else
-        #format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-        format.js   { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    @event.save
+  end
+
+  def delete
+    @event = Event.find(params[:event_id])
   end
 
   def edit
@@ -41,29 +35,23 @@ class EventsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    @search = Event.category(@event.event_type_id).search(params[:q])
+    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
+    @event.update(event_params)
   end
 
   def destroy
-    Event.find(params[:id]).destroy
-    flash[:success] = "Event destroyed."
-    redirect_to events_path
+    @search = Event.category(@event.event_type_id).search(params[:q])
+    @events = @search.result(distinct: true).sort_by_dt.page(params[:page]).per(8)
+    @event.destroy
   end
-  
+
   def search
    @search = params[:search][:q]
   end
-  
+
   private
-  
+
   def find_event
     @event = Event.find(params[:id])
   end
@@ -72,9 +60,9 @@ class EventsController < ApplicationController
     params.require(:event).permit(:name, :event_type_id, :first_side, :second_side,
       :datetime_start, :count, :complete, complete_type_attributes: complete_type_params)
   end
-  
+
   def complete_type_params
     [:id, :result, :description, :event_id, :_destroy]
   end
-  
+
 end

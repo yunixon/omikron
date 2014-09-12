@@ -1,0 +1,10 @@
+.modal-header
+  %h3 Delete Event
+.modal-body
+  %ul.errors
+  Are you sure you wish to delete
+  = succeed "?" do
+    %b= @event.name
+.modal-footer
+  = link_to "Yes, Delete This Event", event_path(@event), method: :delete, remote: true, class: "btn btn-danger"
+  = link_to "No, Please Don't", "#", class: "btn", data: { dismiss: "modal" }

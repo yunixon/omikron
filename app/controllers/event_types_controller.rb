@@ -29,7 +29,7 @@ class EventTypesController < ApplicationController
   end
 
   def update
-    if @event_type.update_attributes(event_type_params)
+    if @event_type.update(event_type_params)
       flash[:success] = "Category updated."
       redirect_to @event_type
     else

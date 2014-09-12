@@ -1,0 +1,9 @@
+$("ul.errors").html("")
+- if @event.errors.any?
+  - @event.errors.full_messages.each do |message|
+    $("ul.errors").append($("
+    %li>
+    ").html("#{message.html_safe}"))
+- else
+  $(".event-index").html("#{j render 'index'}")
+  $("#event-modal").modal("hide")
